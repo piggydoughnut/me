@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+
+html {
+  font-family: 'Roboto Mono', monospace;
+  color: #C4C5E1;
+}
+
+body {
+  height: 100vh;
+  background-color: #21304E;
+  margin: auto;
+  padding: 0;
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+}
+
+body::after {
+  content: "";
+  background: url('../assets/me.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.wrapper {
+  margin-left: 200px;
+  margin-top: 100px;
+}
+
+ul {
+  font-size: 20px;
+}
+
+a {
+  color: #C4C5E1;
+}
