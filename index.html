@@ -1,30 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
+<script>
+  let lightTheme = "assets/light.css"
+  let darkTheme = "./assets/dark.css"
+
+  function turnDark() {
+    changeCss(darkTheme);
+  }
+
+  function turnLight() {
+    changeCss(lightTheme);
+  }
+
+  function changeCss (path) {
+    let allLinks = document.head.getElementsByTagName('link');
+    console.log(allLinks)
+    allLinks[1].href = path;
+  }
+</script>
+
 <head>
   <meta charset="utf-8">
   <title>Daria Mikhailova</title>
   <link rel="stylesheet" href="assets/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="assets/light.css" type="text/css" media="all">
 </head>
 
 <body>
   <div class="wrapper">
-    <h1>Hi!👋🏽 I am Daria! <br> I am a Remote FullStack Developer</h1>
-    <br>
-    <h2>I do a bunch of fun things:</h2>
-    <ul>
-      <li>write servers in Node.js</li>
-      <li>play with Vue and React</li>
-      <li>solve problems</li>
-      <li>create beautiful server architectures</li>
-      <li>write scripts in Python</li>
-      <li>learn about UI and design things in Figma</li>
-      <li>create ink illustrations on a daily basis (<a href="https://www.instagram.com/watchmeillustrate/">@watchmeillustrate</a>)</li>
-    </ul>
-    <br>
-    <p>More details on the above coming soon!😘</p>
-
-    <p>daria.at.engineer</p>
+    <div class="square">
+      <div id="card">
+        <div id="header">
+          <h1>Daria Mikhailova</h1>
+          <div id="toggls">
+            <a href="#" onclick=turnLight()><img src="assets/basic/sun.svg"></a>
+            <a href="#" onclick=turnDark()><img src="assets/basic/moon.svg"></a>            
+          </div>
+        </div>
+        <h2>Software Engineer</h2>
+  
+        <p>blockchain technology <span>and its realworld application</span><br>
+        data privacy <span>as we need to take care of our data</span><br>
+        human psychology <span>used in design and UX to affect users' behavior</span></p>
+        <div id="contact">
+          <a href="mailto:hello@daria.engineer">hello@daria.engineer</a>
+            <div id="contactIcons">
+              <a href="https://github.com/piggydoughnut"><img src="assets/brand/github.svg"></a>
+              <a href="https://www.linkedin.com/in/daria-mikhailova/"><img src="assets/brand/LinkedIn.svg"></a>
+              <a href="https://open.spotify.com/playlist/37i9dQZF1DX4TnpT6vw5rE?si=mlcBNUMaTyKkmIa8P66b-g"><img src="assets/brand/spotify.svg"></a>
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

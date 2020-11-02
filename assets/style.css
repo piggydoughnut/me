@@ -1,45 +1,115 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400&display=swap'); */
 
-html {
-  font-family: 'Roboto Mono', monospace;
-  color: #C4C5E1;
+:root {
+  --font-family-primary: 'Mukta', sans-serif;
+
+  --color-almostWhite: #FCFCFC;
+  --color-veryLightGray: #F5F5F5;
+  --color-veryLightBlue: #E9EEF0;
+  --color-darkerGray: #AEAEAE;
+  --color-darkGray: #9E9E9E;
+  --color-unsaturatedBlue: #4A6065;
+  --color-almostBlack: #012229;
+
+  --font-size-l: 45px;
+  --font-size-m: 24px;
+  --font-size-s: 18px;
+  --font-size-xs: 14px;
 }
 
 body {
-  height: 100vh;
-  background-color: #21304E;
-  margin: auto;
-  padding: 0;
-  display: grid;
-  min-height: 100vh;
-  grid-template-columns: 1fr;
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0em;  
+  line-height: 40px;
+  text-align: left;
+  background-color: #FCFCFC;
 }
 
-body::after {
-  content: "";
-  background: url('../assets/me.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  opacity: 0.1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
+h1 {
+  font-size: var(--font-size-l);
+  line-height: 75px;
+  color: var(--color-almostBlack);
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--font-size-m);
+  color: var(--color-almostBlack);
+}
+
+p {
+  font-size: var(--font-size-s);
+  color: var(--color-almostBlack);
+  line-height: 35px;
+}
+
+span {
+  font-size: var(--font-size-xs);
+  line-height: 30px;
+  color: var(--color-darkGray);
+
 }
 
 .wrapper {
-  margin-left: 10%;
-  margin-top: 100px;
+  height: 100vh;
+  position: relative;
 }
 
-ul {
-  font-size: 20px;
+.square {
+  width: 680px;
+  height: 500px;
+  margin: 0px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translate(-50%, -50%);
+  background: var(--color-veryLightBlue);
+  border: 0.5px solid var(--color-darkerGray);
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
-a {
-  color: #C4C5E1;
+#card {
+  position: absolute;
+  top: 63px;
+  left: 60px;
+}
+
+/** HEADER ***/
+#header {
+  width: 560px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#toggls {
+  display: flex;
+  flex-direction: row;
+  width: 80px;
+  justify-content: space-between;
+}
+
+/** CONTACT ***/
+#contact {
+  margin-top: 60px;
+}
+
+#contact a {
+  color: var(--color-almostBlack);  
+  font-size: var(--font-size-s);
+}
+
+#contactIcons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  width: 100px;
+  margin-top: 10px;
 }
