@@ -1,61 +1,33 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link href="./dist/output.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="flex mt-40 flex-row justify-center">
 
-<script>
-  let lightTheme = "assets/light.css"
-  let darkTheme = "./assets/dark.css"
-
-  function turnDark() {
-    changeCss(darkTheme);
-  }
-
-  function turnLight() {
-    changeCss(lightTheme);
-  }
-
-  function changeCss (path) {
-    let allLinks = document.head.getElementsByTagName('link');
-    console.log(allLinks)
-    allLinks[1].href = path;
-  }
-</script>
-
-<head>
-  <meta charset="utf-8">
-  <title>Daria Mikhailova</title>
-  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all">
-  <link rel="stylesheet" href="assets/light.css" type="text/css" media="all">
-  <link rel="preload" href="./assets/starsPlanets.svg" as="image" type="image/svg+xml"/>
-  <link rel="preload" href="assets/dark.css" as="style">
-</head>
-
-<body>
-  <div class="wrapper">
-    <div class="square">
-      <div id="card">
-        <div id="header">
-          <h1>Daria Mikhailova</h1>
-          <div id="toggls">
-            <a href="#" onclick=turnLight()><img src="assets/basic/sun.svg"></a>
-            <a href="#" onclick=turnDark()><img src="assets/basic/moon.svg"></a>            
-          </div>
-        </div>
-        <h2>Software Engineer</h2>
-  
-        <p>blockchain technology <span>and its realworld application</span><br>
-        data privacy <span>as we need to take care of our data</span><br>
-        human psychology <span>used in design and UX to affect users' behavior</span></p>
-        <div id="contact">
-          <a href="mailto:hello@daria.engineer">hello@daria.engineer</a>
-            <div id="contactIcons">
-              <a href="https://github.com/piggydoughnut"><img src="assets/brand/github.svg"></a>
-              <a href="https://www.linkedin.com/in/daria-mikhailova/"><img src="assets/brand/LinkedIn.svg"></a>
-              <a href="https://open.spotify.com/playlist/37i9dQZF1DX4TnpT6vw5rE?si=mlcBNUMaTyKkmIa8P66b-g"><img src="assets/brand/spotify.svg"></a>
+      <section class="">
+        <div class="mx-auto ">
+            <div class="grid items-center grid-cols-2 gap-8">
+                <div>
+                  <h1 class="font-firaSans font-bold leading-tight max-w-md mb-2">Hello! My name is Daria and I write code</h1>
+                  <p class="font-firaSans">
+                    I have 10+ years accross the stack. <br/>
+                    I write code for open source. <br/>
+                    I am proficient at remote work and a great communicator.
+                  </p>
+                </div>
+                <div class="flex justify-end">
+                  <img src="./assets/face.png" width="200" height="200">
+                </div>
             </div>
         </div>
-      </div>
+    </section>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
