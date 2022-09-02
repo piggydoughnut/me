@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import Blockchain from "./components/Blockchain";
 import Code from "./components/Code";
 import Design from "./components/Design";
 import Footer from "./components/Footer";
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/design" element={<Design />} />
           <Route path="/code" element={<Code />} />
           <Route path="/plants" element={<Plants />} />
+          {/* <Route path="/blockchain" element={<Blockchain />} /> */}
           {/* <Route path="*" element={<NoPage />} /> */}
         </Routes>
         <Footer />
