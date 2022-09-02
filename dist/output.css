@@ -417,6 +417,22 @@ video {
   height: auto;
 }
 
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+p {
+  font-size: var(--font-size-p);
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -558,19 +574,9 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.mx-24 {
-  margin-left: 6rem;
-  margin-right: 6rem;
-}
-
-.mx-10 {
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .mt-5 {
@@ -609,10 +615,6 @@ video {
   display: flex;
 }
 
-.grid {
-  display: grid;
-}
-
 .h-12 {
   height: 3rem;
 }
@@ -637,24 +639,12 @@ video {
   width: 12rem;
 }
 
-.max-w-md {
-  max-width: 28rem;
-}
-
 .max-w-lg {
   max-width: 32rem;
 }
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-rows-2 {
-  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -693,20 +683,27 @@ video {
   gap: 1.25rem;
 }
 
-.gap-10 {
-  gap: 2.5rem;
-}
-
 .gap-1 {
   gap: 0.25rem;
 }
 
-.justify-self-end {
-  justify-self: end;
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.bg-yellow-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 240 138 / var(--tw-bg-opacity));
 }
 
 .bg-black {
@@ -718,20 +715,20 @@ video {
   fill: #282828;
 }
 
-.align-top {
-  vertical-align: top;
+.p-1 {
+  padding: 0.25rem;
 }
 
-.align-middle {
-  vertical-align: middle;
+.text-right {
+  text-align: right;
 }
 
 .font-firaSans {
   font-family: Fira Sans, sans-serif;
 }
 
-.text-sm {
-  font-size: 18px;
+.text-small {
+  font-size: 14px;
 }
 
 .text-tiny {
@@ -751,14 +748,14 @@ video {
   color: rgb(40 40 40 / var(--tw-text-opacity));
 }
 
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
 .text-purple-link {
   --tw-text-opacity: 1;
   color: rgb(85 81 255 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -783,20 +780,10 @@ video {
   --font-size-p: 16px;
 }
 
-h1 {
-  font-size: var(--font-size-h1);
-}
-
-h2 {
-  font-size: var(--font-size-h2);
-}
-
-h3 {
-  font-size: var(--font-size-h3);
-}
-
-p {
-  font-size: var(--font-size-p);
+.hover\:scale-110:hover {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .hover\:scale-150:hover {
@@ -807,6 +794,16 @@ p {
 
 .hover\:fill-purple-link:hover {
   fill: #5551FF;
+}
+
+.hover\:text-purple-link:hover {
+  --tw-text-opacity: 1;
+  color: rgb(85 81 255 / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .hover\:opacity-80:hover {
@@ -822,24 +819,12 @@ p {
     width: 60%;
   }
 
-  .sm\:grid-rows-2 {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-  }
-
   .sm\:flex-row {
     flex-direction: row;
   }
 
-  .sm\:flex-col {
-    flex-direction: column;
-  }
-
   .sm\:gap-10 {
     gap: 2.5rem;
-  }
-
-  .sm\:align-middle {
-    vertical-align: middle;
   }
 }
 
@@ -849,10 +834,6 @@ p {
     margin-right: 6rem;
   }
 
-  .md\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .md\:flex-row {
     flex-direction: row;
   }
@@ -860,23 +841,9 @@ p {
   .md\:flex-row-reverse {
     flex-direction: row-reverse;
   }
-
-  .md\:flex-col {
-    flex-direction: column;
-  }
 }
 
 @media (min-width: 1024px) {
-  .lg\:-mx-56 {
-    margin-left: -14rem;
-    margin-right: -14rem;
-  }
-
-  .lg\:-mx-36 {
-    margin-left: -9rem;
-    margin-right: -9rem;
-  }
-
   .lg\:mx-36 {
     margin-left: 9rem;
     margin-right: 9rem;
