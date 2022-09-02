@@ -1,3 +1,5 @@
+import Link from "./Link";
+
 export default function Main() {
   return (
     <div>
@@ -138,19 +140,12 @@ export default function Main() {
             development, new feature planning, task preparation, and interaction
             with the community. <br />
             <br />I worked closely with &nbsp;
-            <a
-              className="underline text-purple-link"
-              href="https://komodoplatform.com/en/"
-            >
-              the Komodo
-            </a>
+            <Link link="https://komodoplatform.com/en/" linkName="the Komodo" />
             &nbsp; team on development of &nbsp;
-            <a
-              className="underline text-purple-link"
-              href="github.com/tokelPlatform/nspv-js/"
-            >
-              nspv-js library
-            </a>
+            <Link
+              link="github.com/tokelPlatform/nspv-js/"
+              linkName="nspv-js library"
+            />
             &nbsp; (SPV light node, allows quick and easy access without
             downloading the chain). Worked with raw Bitcoin transactions and
             Komodo blockchain specification closely.

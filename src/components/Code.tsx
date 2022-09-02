@@ -19,6 +19,7 @@ const projects = [
     role: "Technical Lead",
     desc: "I worked with both designs and frontened development of the platform and Tokel's website. I did product management and took part in deciding where the platform is moving and what new features are going to be implemented. I planned work load for others and provided necessary support. ",
     image: "/projects/tokeldapp2.png",
+    tags: ["electron", "typescript", "blockchain", "nspv"],
   },
   {
     title: "nSPV-js",
@@ -28,6 +29,7 @@ const projects = [
     role: "Developer",
     desc: "I worked closely with Komodo team on development of nspv-js library. My main goal was to parse and present blockchain data in an easy to consume format so development using nspv will become possible in the future. I worked a lot with raw bitcoin data and various cryptography libraries.",
     image: "/projects/nspv.png",
+    tags: ["btc standard", "blockchain", "javascript"],
   },
   {
     title: "Tokel website",
@@ -35,6 +37,7 @@ const projects = [
     role: "Designer and Developer",
     desc: "I have designed and created Tokel website using GatsbyJs. The main goal was to explain in a concise manner what Tokel Blockchain is and what it offers. The website had to repsent the chain functionality and be on brand. Tokel is a universe of projects and tokens and the website is supposed to reflect that.",
     image: "/projects/tokelweb.png",
+    tags: ["gatsbyjs", "emotion css", "formik"],
   },
   {
     title: "CHIPS Pangea",
@@ -44,15 +47,17 @@ const projects = [
     role: "Frontend Developer",
     desc: "I worked on the frontend, did product management, community outreach, helped dockerize the project setup to reduce complexity, created throrough documentation. The project was at a stale phase when I joined. I turned it around and revived it by active contribution, communication with community and frequent development updates.",
     image: "/projects/poker.png",
+    tags: ["electron", "redux", "react", "blockchain"],
   },
   {
     title: "PredictionVC",
     link: "https://tokel.io",
     aboutProject:
-      "an open source project which provides an easy and inexpensive tokenization solution.",
+      "The platform was meant to serve as an educational space for users to learn about cryptocurrency, track their wallets, complete tasks and receive rewards. ",
     role: "Lead Backend Engineer",
-    desc: "I was responsible for the backend infrastructure and implementation of the PredictionVC Platform. The platform was meant to serve as an educational space for users to learn about cryptocurrency, track their wallets, complete tasks and receive rewards.",
+    desc: "I was responsible for the backend infrastructure and implementation of the PredictionVC Platform. I also worked on organizing and collecting cryptocurrency historical data.",
     image: "/projects/predictionvc.png",
+    tags: ["nodejs", "reactjs", "api"],
   },
 ];
 export default function Code() {
@@ -70,6 +75,7 @@ export default function Code() {
           role={p.role}
           desc={p.desc}
           image={p.image}
+          tags={p.tags}
         />
       ))}
     </div>
