@@ -9,9 +9,11 @@ type Props = {
   image: string;
   tags?: Array<string> | undefined;
   openSource?: boolean;
+  projectId?: string;
 };
 export default function Project({
   title,
+  projectId,
   link,
   aboutProject,
   role,
@@ -21,12 +23,11 @@ export default function Project({
   openSource,
 }: Props) {
   return (
-    <div className="bg-indigo-50 p-8 flex flex-row gap-12 mb-8 rounded">
-      <div className="hover:scale-110 ease-in-out duration-200 border-blue-900">
-        <a className="" href={link}>
-          <img className="" src={image} alt={image}></img>
-        </a>
-      </div>
+    <div
+      id={projectId ? projectId : title}
+      className="bg-indigo-50 p-8 flex flex-row gap-12 mb-8 rounded"
+    >
+      <img className="h-[243px] w-96" src={image} alt={image}></img>
 
       <div>
         <div className="flex flex-row justify-between">
@@ -40,10 +41,11 @@ export default function Project({
           )}
         </div>
         {aboutProject && <p className="text-small">{aboutProject}</p>}
-        <p className="font-bold text-small mt-8">{role}</p>
+        {/* <p className="font-bold text-small mt-8">{role}</p> */}
+        <p className="mt-8 font-bold">My responsibilities</p>
         <p className="text-small">{desc}</p>
         {tags && (
-          <div className="flex flex-row gap-4 mt-4">
+          <div className="flex flex-row gap-4 mt-4 flex-wrap">
             {tags.map((t) => (
               <Label text={t} />
             ))}

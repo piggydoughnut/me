@@ -12,11 +12,19 @@ export default function Main() {
             Hello! My name is Daria and I write code
           </h1>
           <p className="space-y-2">
-            I am a Senior Full Stack Engineer with 10 years of experience.
+            I am a Senior Full Stack Engineer with 10 years of experience.{" "}
+            <br />I mainly work with
+            <a
+              className="bg-yellow-200 hover:text-purple-link hover:underline p-1"
+              href="/code"
+            >
+              Typescript, Reactjs and Nodejs
+            </a>
+            .
             <br />I love writting code for
             <a
               className="bg-yellow-200 hover:text-purple-link hover:underline p-1"
-              href="/code#open-source"
+              href="/code#openSource"
             >
               open source
             </a>
@@ -27,22 +35,14 @@ export default function Main() {
             Have worked with
             <a
               className="bg-yellow-200 hover:text-purple-link hover:underline p-1"
-              href="/blockchain"
+              href="/code#blockchain"
             >
               blockchain
             </a>
             for the past 4 years.
             <br />
             I value communication, transparency, responsibility and compassion
-            ❤️ above all. <br />
-            <br />
-            Typescript, Reactjs, Nodejs,
-            <a
-              className="bg-yellow-200 hover:text-purple-link hover:underline p-1"
-              href="/stack"
-            >
-              See the Stack here
-            </a>
+            ❤️ above all.
             <br />
           </p>
           <div className="flex flex-row mt-5 gap-5">
@@ -201,14 +201,6 @@ export default function Main() {
 
       <section className="mt-20">
         <h2 className="font-bold mb-5">About me</h2>
-        <p>
-          I contribute to the last open source project I worked on and planning
-          to do so in the future.
-        </p>
-        <br />
-
-        <p>I am a female developer.</p>
-        <br />
 
         <p>
           I have worked in the blockchain space mainly collaborating with people
