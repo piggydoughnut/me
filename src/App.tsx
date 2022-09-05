@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Blockchain from "./components/Blockchain";
 import Code from "./components/Code";
 import Design from "./components/Design";
 import Footer from "./components/Footer";

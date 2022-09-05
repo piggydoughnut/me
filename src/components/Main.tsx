@@ -169,7 +169,11 @@ export default function Main() {
                 <path d="M14.8286 7.75735L7.75752 14.8284L9.17173 16.2426L16.2428 9.17156L14.8286 7.75735Z" />
               </svg>
             </a>
-            <a href="https://github.com/tokelPlatform/" target="_blank">
+            <a
+              href="https://github.com/tokelPlatform/"
+              rel="noreferrer"
+              target="_blank"
+            >
               <svg
                 className="cursor-pointer hover:scale-150 ease-in-out duration-300 fill-midnight-black hover:fill-purple-link"
                 width="24"
