@@ -25,7 +25,7 @@ export default function Project({
   return (
     <div
       id={projectId ? projectId : title}
-      className="bg-indigo-50 p-8 flex flex-row gap-12 mb-8 rounded"
+      className="bg-indigo-50 p-8 flex flex-col sm:flex-row gap-12 mb-8 rounded"
     >
       <img className="h-[243px] w-96" src={image} alt={image}></img>
 

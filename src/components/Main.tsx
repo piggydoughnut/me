@@ -198,7 +198,7 @@ export default function Main() {
             target="_blank"
             className="text-white font-bold"
           >
-            Curriculum Vitae
+            CV
           </a>
         </div>
       </section>
