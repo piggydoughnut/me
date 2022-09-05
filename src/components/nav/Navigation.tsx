@@ -17,12 +17,12 @@ export default function Navigation() {
         >
           Design
         </a>
-        <a
+        {/* <a
           className="text-small hover:scale-110 ease-in-out duration-300 hover:text-purple-link fill-midnight-black"
           href="/blockchain"
         >
           Blockchain
-        </a>
+        </a> */}
         <a
           className="text-small hover:scale-110 ease-in-out duration-300 hover:text-purple-link fill-midnight-black"
           href="./Mikhailova_Daria.pdf"

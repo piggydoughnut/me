@@ -9,40 +9,31 @@ export default function Design() {
         You can click on each design to see it live. I have designed them all
         using Figma.
       </p>
-      <div className="flex gap-8 flex-wrap basis-33 mt-20">
-        <a
-          className="hover:scale-110 ease-in-out duration-300"
-          href="https://tokel.io"
-        >
+      <div className="flex gap-16 flex-col mt-20">
+        <a className="" href="https://tokel.io">
           <img
-            className="h-auto w-[420px] border-2 rounded"
+            className="h-auto w-124 border-2 rounded"
             alt="web"
-            src="/designs/tokelweb2.png"
+            src="/designs/tokelweb.png"
           />
         </a>
-        <a className="hover:scale-110 ease-in-out duration-300" href="/">
+        <a className="" href="/">
           <img
-            className="h-[290px] w-[420px] border-2 rounded"
+            className="w-124 border-2 rounded"
             alt="web"
             src="/designs/web.png"
           />
         </a>
-        <a
-          className="hover:scale-110 ease-in-out duration-300"
-          href="https://tokel.io/swap"
-        >
+        <a className="" href="https://tokel.io/swap">
           <img
-            className="h-auto w-[420px] border-2 rounded"
+            className="h-auto  w-124 border-2 rounded"
             alt="web"
             src="/designs/swap.png"
           />
         </a>
-        <a
-          className="hover:scale-110 ease-in-out duration-300"
-          href="https://chips.cash"
-        >
+        <a className="" href="https://chips.cash">
           <img
-            className="h-auto w-[420px] border-2 rounded"
+            className="h-auto  w-124 border-2 rounded"
             alt="web"
             src="/designs/chips.png"
           />

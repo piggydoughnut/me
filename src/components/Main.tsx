@@ -143,7 +143,7 @@ export default function Main() {
             <Link link="https://komodoplatform.com/en/" linkName="the Komodo" />
             &nbsp; team on development of &nbsp;
             <Link
-              link="github.com/tokelPlatform/nspv-js/"
+              link="https://github.com/tokelPlatform/nspv-js/"
               linkName="nspv-js library"
             />
             &nbsp; (SPV light node, allows quick and easy access without

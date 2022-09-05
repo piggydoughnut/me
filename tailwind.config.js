@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         "purple-link": "#5551FF", // light purple
         "midnight-black": "#282828", // midnight-black
+        "lime-yellow": "#EEF3BB",
       },
     },
   },
