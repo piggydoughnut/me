@@ -199,15 +199,13 @@ export default function Main() {
           </div>
         </div>
 
-        <div className="mt-10 w-48 h-12 bg-black rounded-lg flex justify-center items-center">
-          <a
-            href="./Mikhailova_Daria.pdf"
-            target="_blank"
-            className="text-white font-bold"
-          >
-            CV
-          </a>
-        </div>
+        <a
+          href="./Mikhailova_Daria.pdf"
+          target="_blank"
+          className="text-white font-bold mt-10 w-48 h-12 bg-black rounded-lg flex justify-center items-center"
+        >
+          CV
+        </a>
       </section>
 
       <section className="mt-20">
