@@ -1,8 +1,4 @@
-import Imgix from "react-imgix";
-
 export default function Design() {
-  const web =
-    "https://63169ae76e87e50008b485c3--incomparable-sfogliatella-ff0f96.netlify.app/";
   return (
     <div className="mt-40">
       <h1 className="font-bold leading-tight max-w-md mb-3">Design</h1>
