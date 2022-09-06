@@ -5,7 +5,13 @@ export default function Main() {
     <div>
       <section className="mt-40 flex flex-col md:flex-row-reverse items-center justify-between gap-8">
         <div className="flex">
-          <img alt="daria" src="/face.png" width="200" height="200" />
+          <img
+            alt="daria"
+            src="/face-lg.webp"
+            srcSet={`face-sm.webp 300w, face-lg.webp 800w`}
+            width="200"
+            height="200"
+          />
         </div>
         <div>
           <h1 className="font-bold leading-tight max-w-lg mb-3">

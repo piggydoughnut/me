@@ -22,7 +22,7 @@ export default function Footer() {
           are mine too.
         </p>
       </div>
-      <img alt="space lady" src="/lady.png" height="818" width="382" />
+      <img alt="space lady" src="/lady.webp" height="818" width="382" />
     </section>
   );
 }

@@ -1,4 +1,8 @@
+import Imgix from "react-imgix";
+
 export default function Design() {
+  const web =
+    "https://63169ae76e87e50008b485c3--incomparable-sfogliatella-ff0f96.netlify.app/";
   return (
     <div className="mt-40">
       <h1 className="font-bold leading-tight max-w-md mb-3">Design</h1>
@@ -12,7 +16,7 @@ export default function Design() {
       <div className="flex gap-16 flex-col mt-20">
         {[
           {
-            image: "/designs/web.png",
+            image: "/designs/web",
             url: "/",
             projectName: "Personal website",
             overview:
@@ -25,7 +29,7 @@ export default function Design() {
               "Designer, Illustrator, programmer and copywrighter. I have created my designs in Figma and implemented them with React, TailwindCSS and Typescript.",
           },
           {
-            image: "/designs/tokelweb.png",
+            image: "/designs/tokelweb",
             url: "https://tokel.io",
             projectName: "Tokel website",
             overview:
@@ -48,7 +52,7 @@ export default function Design() {
             ],
           },
           {
-            image: "/designs/swap.png",
+            image: "/designs/swap",
             url: "https://tokel.io.swap",
             projectName: "Tokel swap page",
             overview:
@@ -64,7 +68,7 @@ export default function Design() {
             myRole: "Designer and programmer. ",
           },
           {
-            image: "/designs/chips.png",
+            image: "/designs/chips",
             url: "https://chips.cash",
             projectName: "CHIPS website",
             overview:
@@ -76,13 +80,14 @@ export default function Design() {
             myRole:
               "Designer and programmer. I have worked through several iterations of designs, getting constant open source CHIPS community feedback and eventually implemented the approved version.",
           },
-        ].map((item) => (
-          <div>
+        ].map((item, idx) => (
+          <div key={idx}>
             <h2 className="font-bold mb-8">{item.projectName}</h2>
             <a className="" href={item.url}>
               <img
                 className="border rounded"
-                src={item.image}
+                src={`${item.image}-md.webpp`}
+                srcSet={`${item.image}-sm.webp 300w, ${item.image}-md.webp 800w, ${item.image}-lg.webp 1080w`}
                 alt={item.projectName}
               />
             </a>

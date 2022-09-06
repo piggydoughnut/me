@@ -25,12 +25,16 @@ export default function Project({
   return (
     <div
       id={projectId ? projectId : title}
-      className="bg-indigo-50 p-8 flex flex-col sm:flex-row gap-12 mb-8 rounded"
+      className="bg-indigo-50 p-8 flex flex-col sm:flex-row gap-12 mb-0 sm:mb-8 rounded"
     >
-      <img className="h-[243px] w-96" src={image} alt={image}></img>
+      <img
+        className="w-[232px] w:[146.86px] sm:h-[235.48px] sm:w-96"
+        src={image}
+        alt={image}
+      ></img>
 
       <div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-col-reverse sm:flex-row justify-between">
           <a className="underline" href={link}>
             <h2 className="font-bold">{title}</h2>
           </a>
@@ -47,7 +51,7 @@ export default function Project({
         {tags && (
           <div className="flex flex-row gap-4 mt-4 flex-wrap">
             {tags.map((t) => (
-              <Label text={t} />
+              <Label key={t} text={t} />
             ))}
           </div>
         )}
