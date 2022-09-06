@@ -25,7 +25,7 @@ export default function Project({
   return (
     <div
       id={projectId ? projectId : title}
-      className="bg-indigo-50 p-8 flex flex-col sm:flex-row gap-12 mb-0 sm:mb-8 rounded"
+      className="bg-indigo-50 p-8 flex flex-col lg:flex-row gap-4 md:gap-12 mb-0 md:mb-8 rounded"
     >
       <img
         className="w-[232px] w:[146.86px] sm:h-[235.48px] sm:w-96"
@@ -34,12 +34,12 @@ export default function Project({
       ></img>
 
       <div>
-        <div className="flex flex-col-reverse sm:flex-row justify-between">
+        <div className="flex flex-col-reverse lg:flex-row justify-between">
           <a className="underline" href={link}>
             <h2 className="font-bold">{title}</h2>
           </a>
           {openSource && (
-            <div className="bg-lime-yellow pl-1 pr-1 pt-0.5 pb-0.5 text-small self-baseline mt-1.5">
+            <div className="bg-lime-yellow pl-1 pr-1 pt-0.5 pb-0.5 text-small self-baseline mb-1 mt-0 md:mt-1.5">
               OPEN SOURCE
             </div>
           )}

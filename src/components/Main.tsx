@@ -3,7 +3,7 @@ import Link from "./Link";
 export default function Main() {
   return (
     <div>
-      <section className="mt-40 flex flex-col md:flex-row-reverse items-center justify-between gap-8">
+      <section className="mt-8 sm:mt-24 md:mt-40 flex flex-col md:flex-row-reverse items-center justify-between gap-8">
         <div className="flex">
           <img
             alt="daria"
@@ -11,6 +11,7 @@ export default function Main() {
             srcSet={`face-sm.webp 300w, face-lg.webp 800w`}
             width="200"
             height="200"
+            className="self-start"
           />
         </div>
         <div>

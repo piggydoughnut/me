@@ -12,17 +12,22 @@ export default function Footer() {
           <Link link="mailto:hello@dariah.dev" linkName="hello@dariah.dev" />
         </h1>
         <h3 className="mt-5">
-          Also, in case you want to learn something new, here is a guide on{" "}
-          <br />
+          Also, in case you want to learn something new, here is a guide. <br />
           <Link link="./plants" linkName="How to create new plant species" />
         </h3>
 
-        <p className="mt-5 sm:mt-40 mb-2 text-tiny">
+        <p className="mt-5 md:mt-40 mb-2 text-tiny">
           Coded and designed with ❤️ using TailwindCSS by me. All illustrations
           are mine too.
         </p>
       </div>
-      <img alt="space lady" src="/lady.webp" height="818" width="382" />
+      <img
+        className="w-64 md:w-96 self-center md:self-end"
+        alt="space lady"
+        src="/lady.webp"
+        height="818"
+        width="382"
+      />
     </section>
   );
 }
