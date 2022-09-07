@@ -69,7 +69,7 @@ export default function Main() {
               />
             </svg>
           </div>
-          <div className="flex flex-row mt-3 gap-5">
+          {/* <div className="flex flex-row mt-3 gap-5">
             <h3 className="font-bold w-10">CV</h3>
 
             <svg
@@ -82,7 +82,7 @@ export default function Main() {
             >
               <path d="M21 21H17V14.25C17 13.1914 15.8121 12.3058 14.7535 12.3058C13.6949 12.3058 13 13.1914 13 14.25V21H9.00001V9H13V11C13.6623 9.92857 15.3564 9.23727 16.525 9.23727C18.9965 9.23727 21 11.2786 21 13.75V21ZM7 21H3V9H7V21ZM5.00001 3C6.10458 3 7.00001 3.89543 7.00001 5C7.00001 6.10457 6.10458 7 5.00001 7C3.89544 7 3.00001 6.10457 3.00001 5C3.00001 3.89543 3.89544 3 5.00001 3Z" />
             </svg>
-          </div>
+          </div> */}
           <div className="flex flex-row mt-3 gap-5">
             <h3 className="font-bold w-10">Other</h3>
 
@@ -134,12 +134,12 @@ export default function Main() {
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-1 sm:gap-10">
           <h3 className="font-bold w-24">Role</h3>
-          <p className="w-3/5">Technical Lead</p>
+          <p className="w-3/5">Tech Lead</p>
         </div>
         <div className="mt-3 flex flex-col sm:flex-row gap-1 sm:gap-10">
           <h3 className="font-bold w-24">What I did</h3>
           <p className="sm:w-3/5">
-            I was the Tokel tech lead from project inception. I grew the team,
+            I was the Tokel Tech Lead from project inception. I grew the team,
             interviewed and hired new team members. Together we created a fully
             decentralized open source tokenization solution. I provided
             necessary support, product management, team management,
@@ -154,8 +154,8 @@ export default function Main() {
               linkName="nspv-js library"
             />
             &nbsp; (SPV light node, allows quick and easy access without
-            downloading the chain). Worked with raw Bitcoin transactions and
-            Komodo blockchain specification closely.
+            downloading the chain). That included working closely with raw
+            Bitcoin transactions and Komodo blockchain specification.
           </p>
         </div>
 

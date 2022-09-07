@@ -59,7 +59,7 @@ const projects = [
     title: "Lead Backend Enginner for PredictionVC",
     link: "https://tokel.io",
     aboutProject:
-      "PredictionVC was an educational space for users to learn about cryptocurrency, track their wallets, complete tasks and receive rewards. ",
+      "PredictionVC was an educational space for users where they could learn about cryptocurrency, blockchain, track their wallets, complete tasks and receive rewards. ",
     role: "Lead Backend Engineer",
     desc: "I was responsible for the backend infrastructure and implementation of the PredictionVC Platform. I also worked on organizing and collecting cryptocurrency historical data.",
     image: "/projects/predictionvc.webp",
@@ -71,7 +71,7 @@ export default function Code() {
   return (
     <div className="mt-40">
       <h1 className="font-bold leading-tight max-w-md mb-3">Code</h1>
-      <p>Projects that I have worked on recently in the past 4 years.</p>
+      <p>Projects that I have worked on in the past 4 years.</p>
       <div className="mt-20"></div>
       {projects.map((p) => (
         <Project
