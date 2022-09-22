@@ -219,7 +219,7 @@ export default function Main() {
 
         <p>
           I am compassionate and a good communicator. It is natural for me to
-          find common and comunicate with my teammates easily.
+          find common ground and comunicate with my teammates easily.
         </p>
         <br />
 
