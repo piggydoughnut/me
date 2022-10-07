@@ -1,5 +1,4 @@
 import Link from "./Link";
-import instagram from "../assets/instagram.svg";
 
 export default function Main() {
   return (
