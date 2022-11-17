@@ -3,11 +3,11 @@ import "./index.css";
 import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import reportWebVitals from "./reportWebVitals";
 
 ReactGA.initialize("G-E75TQLPLN3");
-ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.send("pageview");
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
