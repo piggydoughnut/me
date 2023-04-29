@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Code from "./components/Code";
-import Design from "./components/Design";
-import Footer from "./components/Footer";
-import Main from "./components/Main";
-import Navigation from "./components/nav/Navigation";
-import Plants from "./components/Plants";
+import Code from "pages/Code";
+import CuratedList from "pages/CuratedList";
+import Design from "pages/Design";
+import Footer from "components/Footer";
+import Main from "pages/Main";
+import Navigation from "components/nav/Navigation";
+import Plants from "pages/Plants";
 
 export default function App() {
   return (
@@ -17,7 +18,7 @@ export default function App() {
           <Route path="/design" element={<Design />} />
           <Route path="/code" element={<Code />} />
           <Route path="/plants" element={<Plants />} />
-          {/* <Route path="/blockchain" element={<Blockchain />} /> */}
+          <Route path="/curated-list" element={<CuratedList />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Routes>
         <Footer />

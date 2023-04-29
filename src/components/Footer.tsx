@@ -9,11 +9,11 @@ export default function Footer() {
       <div>
         <h1 className="font-bold">
           Get in touch for collaboration <br />
-          <Link link="mailto:hello@dariah.dev" linkName="hello@dariah.dev" />
+          <Link link="mailto:hello@dariah.dev">hello@dariah.dev</Link>
         </h1>
         <h3 className="mt-5">
           Also, in case you want to learn something new, here is a guide. <br />
-          <Link link="./plants" linkName="How to create new plant species" />
+          <Link link="./plants">How to create new plant species</Link>
         </h3>
 
         <p className="mt-5 md:mt-40 mb-2 text-tiny">
