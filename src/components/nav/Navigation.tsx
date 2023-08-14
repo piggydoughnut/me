@@ -1,5 +1,4 @@
 import Link from "../Link";
-import { useState } from "react";
 
 const NavLink = ({
   href,

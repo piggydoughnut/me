@@ -1,4 +1,3 @@
-import Link from "components/Link";
 import Project from "../components/Project";
 
 const projects = [
