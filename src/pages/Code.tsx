@@ -1,17 +1,7 @@
+import Link from "components/Link";
 import Project from "../components/Project";
 
 const projects = [
-  // {
-  //   title: "Personal website",
-  //   link: "/",
-  //   projectId: "openSource",
-  //   aboutProject: "My personal piece of internet where I show off my skills.",
-  //   role: "Designer and Developer",
-  //   desc: "I have been working on this one mentally for a long time but only recently had a moment to sit down and create it. I drafted designs in Figma and took this opportunity to try out Tail Wind CSS that everyone has been talking about. I must say it is very fun to work with. When I have a chance to make a side project I like to experiment with new libraries and technologies.",
-  //   image: "/projects/web.png",
-  //   tags: ["reactj", "tailwindcss", "typescript"],
-  //   openSource: true,
-  // },
   {
     title: "Tech Lead for Tokel",
     link: "https://github.com/TokelPlatform/tokel_dapp/releases",

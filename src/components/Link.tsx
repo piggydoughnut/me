@@ -24,3 +24,20 @@ export const ExternalLink = ({ link, children }: Props) => (
     {children}
   </a>
 );
+
+export const FunLink = ({
+  color,
+  children,
+  href,
+}: {
+  color: string;
+  children: React.ReactNode;
+  href?: string;
+}) => (
+  <a
+    className={`${color} hover:text-purple-link hover:underline p-1`}
+    href={href}
+  >
+    {children}
+  </a>
+);

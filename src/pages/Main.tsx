@@ -1,4 +1,4 @@
-import Link, { ExternalLink } from "../components/Link";
+import Link, { ExternalLink, FunLink } from "../components/Link";
 
 import Icons from "components/Icons";
 
@@ -6,23 +6,6 @@ const FunLinkColors = {
   pink: "bg-pink-200",
   yellow: "bg-yellow-200",
 };
-
-const FunLink = ({
-  color,
-  children,
-  href,
-}: {
-  color: string;
-  children: React.ReactNode;
-  href?: string;
-}) => (
-  <a
-    className={`${color} hover:text-purple-link hover:underline p-1`}
-    href={href}
-  >
-    {children}
-  </a>
-);
 
 export default function Main() {
   return (
@@ -53,6 +36,8 @@ export default function Main() {
             </FunLink>
             <br />
             Remote/Async Work <br />
+            Cyber Security
+            <br />
             <FunLink color={FunLinkColors.pink} href="/design">
               Design
             </FunLink>
@@ -98,10 +83,14 @@ export default function Main() {
       <section className="mt-20">
         <h2 className="font-bold">Currently</h2>
         <p className="w-3/4 mt-5">
-          Working at <Link link="parity.io">Parity</Link> on HQ app. <br />
-          Working on a personal project:{" "}
+          Working at <Link link="parity.io">Parity</Link>. <br />
+          Personal projects:{" "}
           <ExternalLink link="https://hack-your-cycle.com/">
             Hack Your Cycle
+          </ExternalLink>
+          ,{" "}
+          <ExternalLink link="https://postcardru.com/">
+            Virtual Postcards
           </ExternalLink>
         </p>
       </section>
