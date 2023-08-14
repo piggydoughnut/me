@@ -38,9 +38,7 @@ export default function Main() {
             Remote/Async Work <br />
             Cyber Security
             <br />
-            <FunLink color={FunLinkColors.pink} href="/design">
-              Design
-            </FunLink>
+            Design
             <br />
             <FunLink
               color={FunLinkColors.yellow}
@@ -49,7 +47,7 @@ export default function Main() {
               Illustration
             </FunLink>
             <br />
-            <FunLink color={FunLinkColors.yellow}>Blockchain</FunLink>
+            Blockchain
             <br />
             <br />
             <p className="">
