@@ -23,7 +23,8 @@ export default function Main() {
             Hello! I am Daria
           </h1>
           <p className="mt-1">
-            Software Engineer at <Link link="parity.io">Parity</Link>{" "}
+            Software Engineer at{" "}
+            <Link link="https://https://parity.io">Parity</Link>{" "}
           </p>
           <p className="space-y-2">
             <br />
@@ -81,7 +82,7 @@ export default function Main() {
       <section className="mt-20">
         <h2 className="font-bold">Currently</h2>
         <p className="w-3/4 mt-5">
-          Working at <Link link="parity.io">Parity</Link>. <br />
+          Working at <Link link="https://parity.io">Parity</Link>. <br />
           Personal projects:{" "}
           <ExternalLink link="https://hack-your-cycle.com/">
             Hack Your Cycle
