@@ -1,11 +1,13 @@
 type Props = {
   link: string;
+  onClick?: () => void;
   children: React.ReactNode;
 };
 
-export default function Link({ link, children }: Props) {
+export default function Link({ link, onClick, children }: Props) {
   return (
     <a
+      onClick={onClick}
       className="underline text-purple-link hover:bg-yellow-200 pt-1 pb-1"
       href={link}
     >

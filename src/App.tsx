@@ -2,11 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Code from "pages/Code";
 import CuratedList from "pages/CuratedList";
+import CuratedListCZ from "pages/cz/CuratedList";
 import Design from "pages/Design";
 import Footer from "components/Footer";
 import Main from "pages/Main";
+import MainCZ from "pages/cz/Main";
 import Navigation from "components/nav/Navigation";
 import Plants from "pages/Plants";
+import PlantsCZ from "pages/cz/Plants";
 
 export default function App() {
   return (
@@ -19,6 +22,9 @@ export default function App() {
           <Route path="/code" element={<Code />} />
           <Route path="/plants" element={<Plants />} />
           <Route path="/curated-list" element={<CuratedList />} />
+          <Route path="/cz" element={<MainCZ />} />
+          <Route path="/cz/plants" element={<PlantsCZ />} />
+          <Route path="/cz/curated-list" element={<CuratedListCZ />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Routes>
         <Footer />

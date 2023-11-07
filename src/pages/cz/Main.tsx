@@ -1,4 +1,4 @@
-import Link, { ExternalLink, FunLink } from "../components/Link";
+import Link, { ExternalLink, FunLink } from "components/Link";
 
 import Icons from "components/Icons";
 
@@ -13,19 +13,15 @@ export default function Main() {
       <section className="mt-8 sm:mt-24 md:mt-40 flex flex-col md:flex-row-reverse items-center justify-between gap-8">
         <div className="flex flex-col">
           <img alt="daria" src="/me-surf.JPG" className="self-start" />
-          <p className="text-gray-400 mt-2 text-right text-small">
-            This is "Madness", she is not with us anymore after being snapped 3
-            times.
-          </p>
         </div>
         <div>
           <h1 className="font-bold leading-tight max-w-lg mb-3">
-            Hello! I am Daria
+            Ahoj! Jsem Daria.
           </h1>
-          <p className="mt-1">Software Engineer</p>
+          <p className="mt-1">Softwarová inženýrka</p>
           <p className="space-y-2">
             <br />
-            <p className="text-gray-500 text-small">I am into: </p>
+            <p className="text-gray-500 text-small">Moje zájmy: </p>
             <FunLink
               href="https://github.com/piggydoughnut/"
               color={FunLinkColors.yellow}
@@ -33,8 +29,8 @@ export default function Main() {
               Open Source
             </FunLink>
             <br />
-            Remote/Async Work <br />
-            Cyber Security
+            Remote/Asynchronní práce <br />
+            Kybernetická bezpečnost
             <br />
             Design
             <br />
@@ -42,17 +38,16 @@ export default function Main() {
               color={FunLinkColors.yellow}
               href="https://dribbble.com/daria-draws"
             >
-              Illustration
+              Illustrace
             </FunLink>
             <br />
             Blockchain
             <br />
             <br />
             <p className="">
-              <span className="text-gray-500 text-small">I value:</span>
+              <span className="text-gray-500 text-small"> Oceňuji:</span>
               <br />
-              communication, transparency, responsibility and compassion ❤️
-              above all.
+              komunikaci, transparentnost, zodpovědnost a soucit ❤️ především.
             </p>
           </p>
           <div className="flex flex-row items-center mt-3 gap-5">
@@ -77,12 +72,11 @@ export default function Main() {
         </div>
       </section>
       <section className="mt-20">
-        <h2 className="font-bold">Currently</h2>
+        <h2 className="font-bold">V současné době</h2>
         <p className="w-3/4 mt-5">
-          Collaborating with various clients, such as{" "}
-          <Link link="https://parity.io">Parity</Link>, 2A design and others.{" "}
-          <br />
-          Personal projects:{" "}
+          Spolupracuji s různými klienty, např.{" "}
+          <Link link="https://parity.io">Parity</Link> a 2A design. <br />
+          Osobní projekty:{" "}
           <ExternalLink link="https://hack-your-cycle.com/">
             Hack Your Cycle
           </ExternalLink>
