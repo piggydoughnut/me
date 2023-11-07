@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import Link from "../Link";
 import { useLocation } from "react-router-dom";
 
