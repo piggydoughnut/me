@@ -30,7 +30,7 @@ export default function Navigation() {
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 mt-4 sm:m-0">
           <NavLink href="/cz/plants">Jak se rodí květiny</NavLink>
           <NavLink href="/cz/curated-list">Pečlivě vybrané</NavLink>
-          <NavLink href="./Mikhailova_Daria.pdf">CV</NavLink>
+          <NavLink href="/cz/Mikhailova_Daria.pdf">CV</NavLink>
           <NavLink href="/cz/#get_in_touch">Kontaktujte mě</NavLink>
         </div>
         <h3 className="mt-10 sm:m-0 flex gap-4 justify-end text-right">
