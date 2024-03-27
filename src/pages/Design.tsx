@@ -10,39 +10,21 @@ export default function Design() {
       <div className="flex gap-16 flex-col mt-20">
         {[
           {
-            image: "/designs/web",
-            url: "/",
-            projectName: "Personal website",
-            overview:
-              "This is a space where I show off my work and introduce myself to the world.",
-            problem:
-              "I needed a good presentation of my skills to share with potential employers. I wanted people to know who I am and reach out to me for collaboration. It is also a space for my creativity where I can try out new coding frameworks, effects and animations.",
-            solution:
-              "Create a website for myself using TailWind CSS which I have been really curious about. To add personality and show my creative side I added my own illustrations.",
-            myRole:
-              "Designer, Illustrator, programmer and copywrighter. I have created my designs in Figma and implemented them with React, TailwindCSS and Typescript.",
-          },
-          {
             image: "/designs/tokelweb",
             url: "https://tokel.io",
             projectName: "Tokel website",
             overview:
-              "Tokel is an open source blockchain project. It’s main goal is to make creating tokens and NFTs easy. It provides an easy to use and inexpensive tokenization solution.",
+              "Tokel is an innovative open-source blockchain project with a primary focus on simplifying the creation of tokens and NFTs. It offers a user-friendly and cost-effective tokenization solution.",
             problem:
-              "Current Tokel website was inconsistent and did not create enough trust with users. It was hard to get users interested in Tokel because there was not enough information about the project.",
+              "The existing Tokel website lacked consistency and failed to establish sufficient trust with users. Insufficient information about the project made it challenging to capture users' interest effectively.",
             solution: [
-              "Re-design Tokel website, following the brand guidelines and design system which has formed throughout previous design process.  The new website has to show off the functionality of the blockchain and explain what can be done with the Tokel Blockchain.",
+              "To address these issues, we embarked on a redesign journey for the Tokel website, aligning closely with established brand guidelines and design systems. The revamped website aims to showcase the blockchain's functionality comprehensively and elucidate the possibilities it offers to users.",
               <br />,
               <br />,
-              "The main goals is to improve brand perception, by creating high quality brand representation.",
-              <br />,
-              <br />,
-              "Visual theme of the website is space. Tokel is a galaxy of token projects and NFTs. ",
+              "The overarching objective is to enhance brand perception by delivering a polished and professional representation of the Tokel brand. The visual theme of the website draws inspiration from space, reflecting Tokel's position as a vast galaxy of token projects and NFTs.",
             ],
             myRole: [
-              "Designer and programmer.  I have iterated through several version of designs, have received feedback from the team and gradually imlemented it.",
-              <br />,
-              "I followed brand guidelines and used illustartions created by another designer on the team.",
+              "I contributed as both designer and developer, refining visual aspects and integrating feedback from the team. The illustrations, created by another designer, enhanced the final product.",
             ],
           },
           {
@@ -50,29 +32,26 @@ export default function Design() {
             url: "https://tokel.io.swap",
             projectName: "Tokel swap page",
             overview:
-              "The swap page allows users to support the project by swapping TOKEL for the currency of their choice. ",
+              "The swap page serves as a gateway for users to support the project by exchanging TOKEL for their preferred currency. ",
             problem:
-              "It is difficult to buy Tokel since the project is small and it has low liquidity. Hence not many exchnages are interested in listing Tokel. The ones that list Tokel are not easy to use. We wanted to make it easier for the interested people to obtain Tokel and to share it with others.",
+              "Purchasing TOKEL presents challenges due to its small size and low liquidity, leading to limited exchange listings. Existing platforms that do list TOKEL often lack user-friendly interfaces. Simplifying the process of acquiring TOKEL and facilitating its dissemination became paramount.",
             solution: [
-              "Create a simple swap page through which users can quickly obtain Tokel using well known and accepted crypto currencies. The page has to be very easy to use and warn users of possible mistakes. The page has to clearly state what the process of swapping means and set users’ expectations accordingly.",
-              <br />,
-
-              "Swap page was added to the already created designs, so it had to follow the brand guidelines and make use of already defined elements and components created in the previous design.",
+              "To address these challenges, we developed a straightforward swap page allowing users to swiftly acquire TOKEL using well-established cryptocurrencies. Emphasizing ease of use, the page provides clear warnings against potential errors and elucidates the swapping process, managing user expectations effectively. Integrated within existing designs, the swap page adheres closely to brand guidelines and utilizes predefined elements and components.",
             ],
-            myRole: "Designer and programmer. ",
+            myRole: "Designer and developer.",
           },
           {
             image: "/designs/chips",
             url: "https://chips.cash",
             projectName: "CHIPS website",
             overview:
-              "CHIPS is a blockchain, pure fork of BTC. CHIPS is a cryptocurrency used to play the first truly decentralized poker game powered by the Pangea Protocol. ",
+              "CHIPS is a blockchain, a direct fork of BTC, serving as the cryptocurrency for the first fully decentralized poker game powered by the Pangea Protocol. ",
             problem:
-              "CHIPS website was inconsistent, created on Wordpress (bulky and vulnerable) and did not clearly communicate what CHIPS was or what it could do.",
+              "The CHIPS website suffered from inconsistency, relying on WordPress—a platform susceptible to bulkiness and vulnerabilities. Furthermore, it failed to effectively communicate CHIPS' purpose and capabilities to visitors.",
             solution:
-              "Re-design CHIPS website. I decided to re-use the already created graphics which were hand drawn by one of the community members. CHIPS website’s theme is casino games, sunrise, game chips, neon lights, midnight city. All those elements are integrated in designs through vector graphics, background images, neon borders and colour choices. ",
+              "To address these issues, it was decided to redesign CHIPS website. Leveraging pre-existing hand-drawn graphics by a community member. I infused the site with a thematic blend of casino games, sunrise motifs, gaming chips, neon lights, and the ambiance of a midnight city.",
             myRole:
-              "Designer and programmer. I have worked through several iterations of designs, getting constant open source CHIPS community feedback and eventually implemented the approved version.",
+              "I was both designer and developer on this project. Iterating through multiple design versions, I collaborated closely with the open-source CHIPS community, incorporating continuous feedback. After finalizing the approved design, I implemented it, ensuring the website effectively communicates CHIPS' identity and offerings.",
           },
         ].map((item, idx) => (
           <div key={idx}>

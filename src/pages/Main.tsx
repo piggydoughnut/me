@@ -36,7 +36,9 @@ export default function Main() {
             Remote/Async Work <br />
             Cyber Security
             <br />
-            Design
+            <FunLink color={FunLinkColors.yellow} href="/design">
+              Design
+            </FunLink>
             <br />
             <FunLink
               color={FunLinkColors.yellow}
@@ -62,9 +64,6 @@ export default function Main() {
             <ExternalLink link={"https://dribbble.com/daria-draws"}>
               {Icons.dribbble}
             </ExternalLink>
-            <ExternalLink link={"https://instagram.com/sogoodnotsogood/"}>
-              {Icons.instagram}
-            </ExternalLink>
             <ExternalLink link={"https://open.spotify.com/user/11120726331"}>
               {Icons.spotify}
             </ExternalLink>{" "}
@@ -79,17 +78,29 @@ export default function Main() {
       <section className="mt-20">
         <h2 className="font-bold">Currently</h2>
         <p className="w-3/4 mt-5">
-          Collaborating with various clients, such as{" "}
-          <Link link="https://parity.io">Parity</Link>, 2A design and others.{" "}
-          <br />
-          Personal projects:{" "}
+          - Studying for{" "}
+          <Link link="https://www.comptia.org/certifications/security">
+            COMP TIA Security+
+          </Link>{" "}
+          exam.
+          <br />- Collaborating with various clients, such as{" "}
+          <Link link="https://parity.io">Parity Technologies</Link>, 2A design
+          and others. <br />
+        </p>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-bold">Personal projects</h2>
+        <p className="w-3/4 mt-5">
           <ExternalLink link="https://hack-your-cycle.com/">
             Hack Your Cycle
-          </ExternalLink>
-          ,{" "}
+          </ExternalLink>{" "}
+          - simple tool for women to sync their cycle phases with Google
+          Calendar. <br />
           <ExternalLink link="https://postcardru.com/">
             Virtual Postcards
-          </ExternalLink>
+          </ExternalLink>{" "}
+          - an exact copy of the 90s virtual postcard website.
         </p>
       </section>
 

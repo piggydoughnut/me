@@ -29,7 +29,7 @@ export default function Navigation() {
         </h3>
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 mt-4 sm:m-0">
           <NavLink href="/cz/plants">Jak se rodí květiny</NavLink>
-          <NavLink href="/cz/curated-list">Pečlivě vybrané</NavLink>
+          {/* <NavLink href="/cz/curated-list">Pečlivě vybrané</NavLink> */}
           <NavLink href="/cz/Mikhailova_Daria.pdf">CV</NavLink>
           <NavLink href="/cz/#get_in_touch">Kontaktujte mě</NavLink>
         </div>
@@ -50,13 +50,10 @@ export default function Navigation() {
         <a href="/">Daria</a>
       </h3>
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 mt-4 sm:m-0">
-        {/* <NavLink href="/code">Work</NavLink> */}
-        {/* <NavLink href="/code">Pet projects</NavLink> */}
-        {/* <NavLink href="/design">Design</NavLink> */}
-        <NavLink href="/plants">Make Plants</NavLink>
-        <NavLink href="/curated-list">Curated</NavLink>
         <NavLink href="./Mikhailova_Daria.pdf">CV</NavLink>
-        <NavLink href="/cz/#get_in_touch">Get in touch</NavLink>
+        <NavLink href="/plants">Art</NavLink>
+        {/* <NavLink href="/curated-list">Curated</NavLink> */}
+        <NavLink href="/#get_in_touch">Get in touch</NavLink>
       </div>
       <h3 className="mt-10 sm:m-0 flex gap-4 justify-end text-right">
         <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
