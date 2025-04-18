@@ -16,6 +16,33 @@ const NavLink = ({
   </a>
 );
 
+const HeaderWrap = ({ children }: { children: React.ReactNode }) => (
+  <nav className="flex flex-col sm:flex-row sm:justify-between mt-8 items-start">
+    {children}
+  </nav>
+);
+
+const LogoMenuWrap = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-col sm:flex-row gap-10 items-start justify-start">
+    {children}
+  </div>
+);
+
+const Languages = () => (
+  <h3 className="mt-0 flex gap-4 justify-end text-right">
+    <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
+      <Link link="/cz">CZ</Link>
+    </h4>
+    <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
+      <Link link="/">EN</Link>
+    </h4>
+  </h3>
+);
+
+const NavLinkWrap = ({ children }: { children: React.ReactNode }) => (
+  <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:m-0">{children}</div>
+);
+
 export default function Navigation() {
   const location = useLocation();
   const isCzechPath =
@@ -23,50 +50,42 @@ export default function Navigation() {
 
   if (isCzechPath) {
     return (
-      <nav className="flex flex-col sm:flex-row sm:justify-between mt-5 ">
-        <h3 className="text-xl sm:text-sm">
+      <HeaderWrap>
+        <LogoMenuWrap>
           <a href="/">Daria</a>
-        </h3>
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 mt-4 sm:m-0">
-          <NavLink href="/cz/plants">Jak se rodí květiny</NavLink>
-          {/* <NavLink href="/cz/curated-list">Pečlivě vybrané</NavLink> */}
-          <NavLink href="/cz/Mikhailova_Daria.pdf">CV</NavLink>
-          <NavLink href="/blog">Blog</NavLink>
-          <NavLink href="/cz/#get_in_touch">Kontaktujte mě</NavLink>
-        </div>
-        <h3 className="mt-10 sm:m-0 flex gap-4 justify-end text-right">
-          <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
-            <Link link="/cz">CZ</Link>
-          </h4>
-          <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
-            <Link link="/">EN</Link>
-          </h4>
-        </h3>
-      </nav>
+          <NavLinkWrap>
+            {[
+              { href: "/cz/plants", children: "Jak se rodí květiny" },
+              { href: "/cz/Mikhailova_Daria.pdf", children: "CV" },
+              { href: "/blog", children: "Blog" },
+              { href: "/cz/#get_in_touch", children: "Kontaktujte mě" },
+            ].map(({ href, children }) => (
+              <NavLink href={href}>{children}</NavLink>
+            ))}
+          </NavLinkWrap>
+        </LogoMenuWrap>
+        <Languages />
+      </HeaderWrap>
     );
   }
   return (
-    <nav className="flex flex-col sm:flex-row sm:justify-between mt-8">
-      <div className="flex flex-row gap-10 items-center">
-        <h3 className="text-sm">
-          <a href="/">Daria</a>
-        </h3>
-        <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:m-0">
-          <NavLink href="./Mikhailova_Daria.pdf">CV</NavLink>
-          <NavLink href="/plants">Art</NavLink>
-          <NavLink href="/blog">Blog</NavLink>
-          {/* <NavLink href="/curated-list">Curated</NavLink> */}
-          <NavLink href="/#get_in_touch">Get in touch</NavLink>
-        </div>
-      </div>
-      <h3 className="mt-10 sm:m-0 flex gap-4 justify-end text-right">
-        <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
-          <Link link="/cz">CZ</Link>
-        </h4>
-        <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
-          <Link link="/">EN</Link>
-        </h4>
-      </h3>
-    </nav>
+    <HeaderWrap>
+      <LogoMenuWrap>
+        <a className="text-sm" href="/">
+          Daria
+        </a>
+        <NavLinkWrap>
+          {[
+            { href: "./Mikhailova_Daria.pdf", children: "CV" },
+            { href: "/plants", children: "Art" },
+            { href: "/blog", children: "Blog" },
+            { href: "/#get_in_touch", children: "Get in touch" },
+          ].map(({ href, children }) => (
+            <NavLink href={href}>{children}</NavLink>
+          ))}
+        </NavLinkWrap>
+      </LogoMenuWrap>
+      <Languages />
+    </HeaderWrap>
   );
 }
