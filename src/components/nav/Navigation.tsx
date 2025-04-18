@@ -31,6 +31,7 @@ export default function Navigation() {
           <NavLink href="/cz/plants">Jak se rodí květiny</NavLink>
           {/* <NavLink href="/cz/curated-list">Pečlivě vybrané</NavLink> */}
           <NavLink href="/cz/Mikhailova_Daria.pdf">CV</NavLink>
+          <NavLink href="/blog">Blog</NavLink>
           <NavLink href="/cz/#get_in_touch">Kontaktujte mě</NavLink>
         </div>
         <h3 className="mt-10 sm:m-0 flex gap-4 justify-end text-right">
@@ -45,15 +46,18 @@ export default function Navigation() {
     );
   }
   return (
-    <nav className="flex flex-col sm:flex-row sm:justify-between mt-5 ">
-      <h3 className="text-xl sm:text-sm">
-        <a href="/">Daria</a>
-      </h3>
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 mt-4 sm:m-0">
-        <NavLink href="./Mikhailova_Daria.pdf">CV</NavLink>
-        <NavLink href="/plants">Art</NavLink>
-        {/* <NavLink href="/curated-list">Curated</NavLink> */}
-        <NavLink href="/#get_in_touch">Get in touch</NavLink>
+    <nav className="flex flex-col sm:flex-row sm:justify-between mt-8">
+      <div className="flex flex-row gap-10 items-center">
+        <h3 className="text-sm">
+          <a href="/">Daria</a>
+        </h3>
+        <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:m-0">
+          <NavLink href="./Mikhailova_Daria.pdf">CV</NavLink>
+          <NavLink href="/plants">Art</NavLink>
+          <NavLink href="/blog">Blog</NavLink>
+          {/* <NavLink href="/curated-list">Curated</NavLink> */}
+          <NavLink href="/#get_in_touch">Get in touch</NavLink>
+        </div>
       </div>
       <h3 className="mt-10 sm:m-0 flex gap-4 justify-end text-right">
         <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">

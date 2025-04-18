@@ -14,7 +14,7 @@ import PlantsCZ from "pages/cz/Plants";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col justify-center font-firaSans text-midnight-black mx-8 md:mx-24 lg:mx-36 xl:mx-60">
+      <div className="flex flex-col justify-center font-firaSans text-midnight-black mx-10 lg:mx-10 xl:mx-[16.5rem] transition-all duration-300">
         <Navigation />
         <Routes>
           <Route index element={<Main />} />
