@@ -78,11 +78,6 @@ export default function Main() {
       <section className="mt-20">
         <h2 className="font-bold">Currently</h2>
         <p className="w-3/4 mt-5">
-          - Studying for{" "}
-          <Link link="https://www.comptia.org/certifications/security">
-            COMP TIA Security+
-          </Link>{" "}
-          exam.
           <br />- Collaborating with various clients, such as{" "}
           <Link link="https://parity.io">Parity Technologies</Link>, 2A design
           and others. <br />
@@ -102,6 +97,18 @@ export default function Main() {
           </ExternalLink>{" "}
           - an exact copy of the 90s virtual postcard website.
         </p>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-bold">Certifications</h2>
+        <a href="https://www.credly.com/badges/1d8c0b9e-0bab-4346-87cd-693a374d7ec8/public_url">
+          <img
+            src="./sec-plus.png"
+            alt="sec+ badge id: 1d8c0b9e-0bab-4346-87cd-693a374d7ec8"
+            width="100"
+            height="100"
+          ></img>
+        </a>
       </section>
 
       {/* <Footer /> */}
