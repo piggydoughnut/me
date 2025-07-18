@@ -64,11 +64,11 @@ const Card = ({
     document.body.removeChild(link);
   };
   return (
-    <div className="space-y-6 grid grid-cols-3">
+    <div className="space-y-6 md:grid md:grid-cols-3">
       <div className="max-w-[400px]">
         <img width="300px" src={src} alt={src}></img>
       </div>
-      <div className="ml-10 col-span-2 flex flex-col gap-4">
+      <div className="md:ml-10 col-span-2 flex flex-col gap-4">
         <h2>{title}</h2>
         <div>
           <b>When to play</b>
