@@ -9,22 +9,31 @@ export default function ProgrammingPlayCards() {
         {[
           {
             title: "Code Whisperer",
-            src: "/cards/Code-Whisperer.png",
+            src: "/cards/Code-Whisperer-small.jpeg",
+            downloadSrc: "/cards/Code-Whisperer.png",
             when: "Oh yeah! You have done it, you managed to separate a small task and fix it with a minimal amount of code, hence no headache for the reviewer. This card gives the code reviewer peace and serenity. They will also restore a bunch of health points in the process.",
           },
           {
             title: "Form Slayer",
-            src: "/cards/Form-Slayer.png",
+            src: "/cards/Form-Slayer-small.jpeg",
+            downloadSrc: "/cards/Form-Slayer.png",
             when: "Imagine you have just conquered some beurocratic process - filled out a bunch of forms, wrote an essay about how amazing you are, or whatever else is required of you at work. Now its time to share the joy with the rest of your team.",
           },
           {
             title: "Pull Requestus Gigantus",
-            src: "/cards/PR-gigantus.png",
+            src: "/cards/PR-gigantus-small.jpeg",
+            downloadSrc: "/cards/PR-gigantus.png",
             when: "Play this one when you produced such a massive PR that it is a bit awkward to ask others to review it. All you can offer to them in that moment is a bit of fun in exchange for hours of their pain trying to claw their way through a wall of code that you have created.",
           },
         ].map((c) => {
           return (
-            <Card key={c.title} title={c.title} src={c.src} when={c.when} />
+            <Card
+              downloadSrc={c.downloadSrc}
+              key={c.title}
+              title={c.title}
+              src={c.src}
+              when={c.when}
+            />
           );
         })}
       </div>
@@ -34,11 +43,21 @@ export default function ProgrammingPlayCards() {
 
 
 
-const Card = ({ title, src, when }: { title: string; src: string; when:string}) => {
+const Card = ({
+  title,
+  src,
+  downloadSrc,
+  when,
+}: {
+  title: string;
+  src: string;
+  downloadSrc: string; 
+  when: string;
+}) => {
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = src; // replace with your actual image src variable
-    const fileName = src.split('/').pop() || 'card.png';
+    link.href = downloadSrc; // replace with your actual image src variable
+    const fileName = downloadSrc.split("/").pop() || "card.png";
     link.download = fileName;
     document.body.appendChild(link);
     link.click();
@@ -55,7 +74,7 @@ const Card = ({ title, src, when }: { title: string; src: string; when:string}) 
           <b>When to play</b>
           <div> {when}</div>
         </div>
-        <button 
+        <button
           onClick={handleDownload}
           className="w-fit mt-2 px-4 py-2 bg-black hover:bg-pink-600 text-white font-semibold rounded shadow transition-colors duration-200"
         >
