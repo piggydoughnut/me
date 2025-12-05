@@ -5,6 +5,7 @@ import CuratedList from "pages/CuratedList";
 import CuratedListCZ from "pages/cz/CuratedList";
 import Design from "pages/Design";
 import Footer from "components/Footer";
+import Fun from "pages/Fun";
 import Main from "pages/Main";
 import MainCZ from "pages/cz/Main";
 import Navigation from "components/nav/Navigation";
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/code" element={<Code />} />
           <Route path="/plants" element={<Plants />} />
           <Route path="/curated-list" element={<CuratedList />} />
+          <Route path="/fun" element={<Fun />} />
           <Route path="/cz" element={<MainCZ />} />
           <Route path="/cz/plants" element={<PlantsCZ />} />
           <Route path="/cz/curated-list" element={<CuratedListCZ />} />

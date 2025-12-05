@@ -79,6 +79,7 @@ export default function Navigation() {
             { href: "./Mikhailova_Daria.pdf", children: "CV" },
             { href: "/plants", children: "Art" },
             { href: "/blog", children: "Blog" },
+            { href: "/fun", children: "Fun" },
             { href: "/#get_in_touch", children: "Get in touch" },
           ].map(({ href, children }) => (
             <NavLink href={href}>{children}</NavLink>
