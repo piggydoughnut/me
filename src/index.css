@@ -1,37 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap');
-
 
 :root {
-    --font-family-primary: 'Fira Sans', sans-serif;
-  
-    --color-text: #FCFCFC;
+  --font-family-primary: "Fira Sans", sans-serif;
 
-    --font-size-h1: 36px;
-    --font-size-h2: 24px;
-    --font-size-h3: 18px;
-    --font-size-p: 16px;
+  --color-text: #fcfcfc;
+
+  --font-size-h1: 36px;
+  --font-size-h2: 24px;
+  --font-size-h3: 18px;
+  --font-size-p: 16px;
+}
+
+@layer base {
+  html {
+    font-family: "Fira Sans", sans-serif;
   }
 
-  @layer base {
-    h1 {
-      font-size: var(--font-size-h1);
-    }
-    
-    h2 {
-      font-size: var(--font-size-h2);
-    }
-    
-    h3 {
-      font-size: var(--font-size-h3);
-    }
-    
-    p {
-      font-size: var(--font-size-p);
-    }
+  body {
+    font-family: "Fira Sans", sans-serif;
   }
+
+  h1 {
+    font-size: var(--font-size-h1);
+  }
+
+  h2 {
+    font-size: var(--font-size-h2);
+  }
+
+  h3 {
+    font-size: var(--font-size-h3);
+  }
+
+  p {
+    font-size: var(--font-size-p);
+  }
+}
 
 .transition-all {
   transition-property: all;

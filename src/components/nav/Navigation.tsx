@@ -57,10 +57,11 @@ export default function Navigation() {
             {[
               { href: "/cz/plants", children: "Jak se rodí květiny" },
               { href: "/cz/Mikhailova_Daria.pdf", children: "CV" },
-              { href: "/blog", children: "Blog" },
               { href: "/cz/#get_in_touch", children: "Kontaktujte mě" },
             ].map(({ href, children }) => (
-              <NavLink key={href} href={href}>{children}</NavLink>
+              <NavLink key={href} href={href}>
+                {children}
+              </NavLink>
             ))}
           </NavLinkWrap>
         </LogoMenuWrap>
@@ -77,9 +78,9 @@ export default function Navigation() {
         <NavLinkWrap>
           {[
             { href: "./Mikhailova_Daria.pdf", children: "CV" },
-            { href: "/art", children: "Art" },
-            { href: "/blog", children: "Blog" },
+            { href: "/plants", children: "Art" },
             { href: "/#get_in_touch", children: "Get in touch" },
+            { href: "/fun", children: "Happy New Year 🎄" },
           ].map(({ href, children }) => (
             <NavLink key={href} href={href}>
               {children}
