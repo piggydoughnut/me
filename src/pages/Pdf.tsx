@@ -193,6 +193,188 @@ export default function Pdf() {
           currentY = titleY + lineSpacing + 5;
         };
 
+        // Helper function to move to next half-page
+        const moveToNextHalfPage = () => {
+          if (currentHalf === "left") {
+            currentHalf = "right";
+            currentY = margin + 20;
+          } else {
+            doc.addPage();
+            drawDivider();
+            currentHalf = "left";
+            currentY = margin + 20;
+          }
+        };
+
+        // Helper function to get current half-page dimensions
+        const getCurrentHalfDimensions = () => {
+          const textWidth =
+            currentHalf === "left"
+              ? dividerX - 2 * margin
+              : pageWidth - dividerX - 2 * margin;
+          const textX = currentHalf === "left" ? margin : dividerX + margin;
+          const rectX = currentHalf === "left" ? margin : dividerX + margin;
+          const rectWidth =
+            currentHalf === "left"
+              ? dividerX - 2 * margin
+              : pageWidth - dividerX - 2 * margin;
+          return { textWidth, textX, rectX, rectWidth };
+        };
+
+        // Helper function to check and move to next half-page if needed
+        const ensureSpace = (requiredSpace: number = 60) => {
+          if (currentY > pageHeight - margin - requiredSpace) {
+            moveToNextHalfPage();
+          }
+        };
+
+        // Helper function to add prompt text
+        const addPromptText = (promptText: string) => {
+          ensureSpace(60);
+
+          const { textWidth, textX } = getCurrentHalfDimensions();
+
+          // Set font for prompt
+          doc.setFontSize(10);
+          doc.setFont(fontName, "normal");
+          doc.setTextColor(0, 0, 0);
+
+          // Split text into lines that fit within the half-page width
+          const splitText = doc.splitTextToSize(promptText, textWidth);
+
+          // Add each line of text
+          splitText.forEach((line: string) => {
+            if (currentY > pageHeight - margin - 20) {
+              moveToNextHalfPage();
+            }
+            doc.text(line, textX, currentY, { align: "left" });
+            currentY += 6;
+          });
+
+          // Add spacing after prompt
+          currentY += 1;
+        };
+
+        // Helper function to add dot pattern section (fills remaining space)
+        const addDotPatternSection = () => {
+          const { rectX, rectWidth } = getCurrentHalfDimensions();
+          const rectStartY = currentY - 2;
+          const rectHeight = pageHeight - rectStartY - margin - 10;
+          drawDotPattern(rectX, rectStartY, rectWidth, rectHeight);
+        };
+
+        // Helper function to add a complete single-section page
+        const addSingleSectionPage = (
+          title: string,
+          promptText: string,
+          titleOptions?: {
+            fontSize?: number;
+            fontStyle?: "normal" | "bold" | "italic";
+            titleColor?: [number, number, number];
+            topMargin?: number;
+            lineSpacing?: number;
+          }
+        ) => {
+          moveToNextHalfPage();
+          addPageTemplate(
+            title,
+            titleOptions || { fontSize: 12, fontStyle: "bold" }
+          );
+          addPromptText(promptText);
+          addDotPatternSection();
+          addPageNumber();
+        };
+
+        // Helper function to add a two-section page
+        const addTwoSectionPage = (
+          title: string,
+          prompt1: string,
+          prompt2: string,
+          titleOptions?: {
+            fontSize?: number;
+            fontStyle?: "normal" | "bold" | "italic";
+            titleColor?: [number, number, number];
+            topMargin?: number;
+            lineSpacing?: number;
+          }
+        ) => {
+          moveToNextHalfPage();
+          addPageTemplate(
+            title,
+            titleOptions || { fontSize: 12, fontStyle: "bold" }
+          );
+
+          // First section: "How would you like to feel in <newYear>?"
+          ensureSpace(60);
+
+          // Calculate available width for text in current half
+          const { textWidth, textX } = getCurrentHalfDimensions();
+
+          // Set font for prompt
+          doc.setFontSize(10);
+          doc.setFont(fontName, "normal");
+          doc.setTextColor(0, 0, 0);
+
+          // Split text into lines that fit within the half-page width
+          const splitText1 = doc.splitTextToSize(prompt1, textWidth);
+
+          // Add each line of text
+          splitText1.forEach((line: string) => {
+            if (currentY > pageHeight - margin - 20) {
+              moveToNextHalfPage();
+            }
+            doc.text(line, textX, currentY, { align: "left" });
+            currentY += 6;
+          });
+
+          // Add spacing after first prompt
+          currentY += 1;
+          const rectStartY1 = currentY - 2;
+
+          // Second section: "Your <newYear> Bucket List" - add prompt first
+          // Calculate how much space the second prompt will take
+          const splitText2 = doc.splitTextToSize(prompt2, textWidth);
+          const prompt2Height = splitText2.length * 6 + 1; // Height of prompt text + spacing
+
+          // Calculate available space for both rectangles
+          // Layout: first rectangle + small spacing + second prompt + second rectangle
+          const spacingAfterFirstRect = 2; // Small spacing after first rectangle
+          const availableSpace = pageHeight - rectStartY1 - margin - 10;
+          const totalContentHeight = prompt2Height + spacingAfterFirstRect;
+          const rectHeightEach = (availableSpace - totalContentHeight) / 2;
+
+          // Draw gray rounded rectangle for first section
+          const { rectX, rectWidth } = getCurrentHalfDimensions();
+          drawDotPattern(rectX, rectStartY1, rectWidth, rectHeightEach);
+
+          // Move to second section - start right after first rectangle
+          currentY = rectStartY1 + rectHeightEach + 8; // Small spacing after first rectangle
+          currentY += 2.1; // Move second title 6px lower (≈2.1mm, net 6px from original)
+
+          // Add second prompt text
+          doc.setFontSize(10);
+          doc.setFont(fontName, "normal");
+          doc.setTextColor(0, 0, 0);
+
+          splitText2.forEach((line: string) => {
+            doc.text(line, textX, currentY, { align: "left" });
+            currentY += 6;
+          });
+
+          // Add spacing after second prompt
+          currentY += 1;
+
+          // Draw gray rounded rectangle for second section
+          const rectStartY2 = currentY - 2;
+          // Ensure same bottom margin as single-section rectangles
+          const rectHeight2 = pageHeight - rectStartY2 - margin - 10;
+
+          drawDotPattern(rectX, rectStartY2, rectWidth, rectHeight2);
+
+          // Add page number for this half-page
+          addPageNumber();
+        };
+
         // Helper function to add content to a half-page
         let currentHalf: "left" | "right" = "left";
         let currentY = margin + 20;
@@ -228,19 +410,8 @@ export default function Pdf() {
         // Calculate positions
         const titleY = startY;
 
-        // Horizontal line above text
-        // const lineY1 = titleY - 15;
-        // const lineY2 = subtitleY + 4; // Below subtitle
-
         // Set color for title (#1A212E)
         doc.setTextColor(26, 33, 46); // RGB for #1A212E
-
-        // Draw horizontal line above
-        doc.setDrawColor(26, 33, 46);
-        // doc.setLineWidth(0.5);
-        // const lineStartX = dividerX + margin;
-        // const lineEndX = pageWidth - margin;
-        // doc.line(lineStartX, lineY1, lineEndX, lineY1);
 
         // Title: "A Moment Between Years" (larger, full opacity, bold, Windsor font)
         doc.setFontSize(20);
@@ -274,10 +445,6 @@ export default function Pdf() {
           align: "center",
         });
 
-        // Draw horizontal line below (matching subtitle opacity)
-        // doc.setDrawColor(opacityColorR, opacityColorG, opacityColorB);
-        // doc.line(lineStartX, lineY2, lineEndX, lineY2);
-
         // Reset text color to black for rest of document
         doc.setTextColor(0, 0, 0);
 
@@ -288,679 +455,83 @@ export default function Pdf() {
         currentHalf = "left";
         currentY = margin + 20;
 
-        // Apply page template with title
+        // First content page: MOMENTS OF GRATITUDE (already on new page, left half)
         addPageTemplate("MOMENTS OF GRATITUDE", {
-          fontSize: 12, // ~20px equivalent
-          fontStyle: "bold",
-          titleColor: [26, 33, 46], // #1A212E
-          topMargin: 15,
-          lineSpacing: 4, // Reduced spacing between lines and title
-        });
-
-        // Add the prompt - ensure it fits in current half-page
-        const promptText = `Describe the top 3 moments from ${lastYear} which make you feel most grateful.`;
-
-        // Check if we need to move to next half-page before adding prompt
-        if (currentY > pageHeight - margin - 60) {
-          // Not enough space, move to next half-page
-          if (currentHalf === "left") {
-            currentHalf = "right";
-            currentY = margin + 20;
-          } else {
-            doc.addPage();
-            drawDivider();
-            currentHalf = "left";
-            currentY = margin + 20;
-          }
-        }
-
-        // Calculate available width for text in current half
-        const textWidth =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const textX = currentHalf === "left" ? margin : dividerX + margin;
-
-        // Set font for prompt
-        // Set font size to 10pt, which is approximately 13.3 pixels (1pt ≈ 1.333px)
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        // Split text into lines that fit within the half-page width
-        const splitText = doc.splitTextToSize(promptText, textWidth);
-
-        // Add each line of text
-        splitText.forEach((line: string) => {
-          // Check if we still have space
-          if (currentY > pageHeight - margin - 20) {
-            // Move to next half-page
-            if (currentHalf === "left") {
-              currentHalf = "right";
-              currentY = margin + 20;
-            } else {
-              doc.addPage();
-              drawDivider();
-              currentHalf = "left";
-              currentY = margin + 20;
-            }
-          }
-          doc.text(line, textX, currentY, { align: "left" });
-          currentY += 6; // Line height for 12pt font
-        });
-
-        // Add spacing after prompt
-        currentY += 1;
-
-        // Draw a light gray rounded rectangle as a placeholder for writing
-        const rectStartX = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const rectStartY = currentY - 2;
-        const rectHeight = pageHeight - rectStartY - margin - 10; // Fill remaining space with some margin
-        const cornerRadius = 2; // Small rounded corners
-
-        // Draw dot pattern in rounded rectangle
-        const x = rectStartX;
-        const y = rectStartY;
-        const w = rectWidth;
-        const h = rectHeight;
-
-        drawDotPattern(x, y, w, h);
-
-        // Add page number for this half-page
-        addPageNumber();
-
-        // New page with title
-        // Ensure we're on a fresh half-page
-        if (currentHalf === "left") {
-          // Move to right half on same page
-          currentHalf = "right";
-          currentY = margin + 20;
-        } else {
-          // Move to next page, left half
-          doc.addPage();
-          drawDivider();
-          currentHalf = "left";
-          currentY = margin + 20;
-        }
-
-        // Apply page template with title
-        addPageTemplate(`${newYear}, WELCOME!`, {
           fontSize: 12,
           fontStyle: "bold",
-          titleColor: [26, 33, 46], // #1A212E
+          titleColor: [26, 33, 46],
           topMargin: 15,
-          lineSpacing: 4, // Reduced spacing between lines and title
+          lineSpacing: 4,
         });
-
-        // First section: "How would you like to feel in <newYear>?"
-        const promptText1 = `How would you like to feel in ${newYear}?`;
-
-        // Check if we need to move to next half-page before adding prompt
-        if (currentY > pageHeight - margin - 60) {
-          if (currentHalf === "left") {
-            currentHalf = "right";
-            currentY = margin + 20;
-          } else {
-            doc.addPage();
-            drawDivider();
-            currentHalf = "left";
-            currentY = margin + 20;
-          }
-        }
-
-        // Calculate available width for text in current half
-        const textWidth1 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const textX1 = currentHalf === "left" ? margin : dividerX + margin;
-
-        // Set font for prompt
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        // Split text into lines that fit within the half-page width
-        const splitText1 = doc.splitTextToSize(promptText1, textWidth1);
-
-        // Add each line of text
-        splitText1.forEach((line: string) => {
-          if (currentY > pageHeight - margin - 20) {
-            if (currentHalf === "left") {
-              currentHalf = "right";
-              currentY = margin + 20;
-            } else {
-              doc.addPage();
-              drawDivider();
-              currentHalf = "left";
-              currentY = margin + 20;
-            }
-          }
-          doc.text(line, textX1, currentY, { align: "left" });
-          currentY += 6;
-        });
-
-        // Add spacing after first prompt
-        currentY += 1;
-        const rectStartY1 = currentY - 2;
-
-        // Second section: "Your <newYear> Bucket List" - add prompt first
-        const promptText2 = `Your ${newYear} Bucket List`;
-
-        // Calculate how much space the second prompt will take
-        const textWidth2 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const splitText2 = doc.splitTextToSize(promptText2, textWidth2);
-        const prompt2Height = splitText2.length * 6 + 1; // Height of prompt text + spacing
-
-        // Calculate available space for both rectangles
-        // Layout: first rectangle + small spacing + second prompt + second rectangle
-        const spacingAfterFirstRect = 2; // Small spacing after first rectangle
-        const availableSpace = pageHeight - rectStartY1 - margin - 10;
-        const totalContentHeight = prompt2Height + spacingAfterFirstRect;
-        const rectHeightEach = (availableSpace - totalContentHeight) / 2;
-
-        // Draw gray rounded rectangle for first section
-        const rectStartX1 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth1 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const cornerRadius1 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x1 = rectStartX1;
-        const y1 = rectStartY1;
-        const w1 = rectWidth1;
-        const h1 = rectHeightEach;
-        const r1 = cornerRadius1;
-
-        drawDotPattern(x1, y1, w1, h1);
-
-        // Move to second section - start right after first rectangle
-        currentY = rectStartY1 + rectHeightEach + 8; // Small spacing after first rectangle
-        currentY += 2.1; // Move second title 6px lower (≈2.1mm, net 6px from original)
-
-        // Add second prompt text
-        const textX2 = currentHalf === "left" ? margin : dividerX + margin;
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        splitText2.forEach((line: string) => {
-          doc.text(line, textX2, currentY, { align: "left" });
-          currentY += 6;
-        });
-
-        // Add spacing after second prompt
-        currentY += 1;
-
-        // Draw gray rounded rectangle for second section
-        const rectStartX2 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth2 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const rectStartY2 = currentY - 2;
-        // Ensure same bottom margin as single-section rectangles
-        const rectHeight2 = pageHeight - rectStartY2 - margin - 10;
-        const cornerRadius2 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x2 = rectStartX2;
-        const y2 = rectStartY2;
-        const w2 = rectWidth2;
-        const h2 = rectHeight2;
-        const r2 = cornerRadius2;
-
-        drawDotPattern(x2, y2, w2, h2);
-
-        // Add page number for this half-page
+        addPromptText(
+          `Describe the top 3 moments from ${lastYear} which make you feel most grateful.`
+        );
+        addDotPatternSection();
         addPageNumber();
 
-        // New page with title
-        // Ensure we're on a fresh half-page
-        if (currentHalf === "left") {
-          // Move to right half on same page
-          currentHalf = "right";
-          currentY = margin + 20;
-        } else {
-          // Move to next page, left half
-          doc.addPage();
-          drawDivider();
-          currentHalf = "left";
-          currentY = margin + 20;
-        }
+        // Generate remaining content pages using helper functions
 
-        // Apply page template with title
-        addPageTemplate("THE NEW YEAR IS HERE", {
-          fontSize: 12,
-          fontStyle: "bold",
-          titleColor: [26, 33, 46], // #1A212E
-          topMargin: 15,
-          lineSpacing: 4, // Reduced spacing between lines and title
-        });
-
-        // First section: "Summarize your <lastYear> in one word or phrase."
-        const promptText3 = `Summarize your ${lastYear} in one word or phrase.`;
-
-        // Check if we need to move to next half-page before adding prompt
-        if (currentY > pageHeight - margin - 60) {
-          if (currentHalf === "left") {
-            currentHalf = "right";
-            currentY = margin + 20;
-          } else {
-            doc.addPage();
-            drawDivider();
-            currentHalf = "left";
-            currentY = margin + 20;
+        addTwoSectionPage(
+          `${newYear}, WELCOME!`,
+          `How would you like to feel in ${newYear}?`,
+          `Your ${newYear} Bucket List`,
+          {
+            fontSize: 12,
+            fontStyle: "bold",
+            titleColor: [26, 33, 46],
+            topMargin: 15,
+            lineSpacing: 4,
           }
-        }
+        );
 
-        // Calculate available width for text in current half
-        const textWidth3 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const textX3 = currentHalf === "left" ? margin : dividerX + margin;
-
-        // Set font for prompt
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        // Split text into lines that fit within the half-page width
-        const splitText3 = doc.splitTextToSize(promptText3, textWidth3);
-
-        // Add each line of text
-        splitText3.forEach((line: string) => {
-          if (currentY > pageHeight - margin - 20) {
-            if (currentHalf === "left") {
-              currentHalf = "right";
-              currentY = margin + 20;
-            } else {
-              doc.addPage();
-              drawDivider();
-              currentHalf = "left";
-              currentY = margin + 20;
-            }
+        addTwoSectionPage(
+          "THE NEW YEAR IS HERE",
+          `Summarize your ${lastYear} in one word or phrase.`,
+          `Create a tagline for ${newYear} (e.g growth, self-love, etc.)`,
+          {
+            fontSize: 12,
+            fontStyle: "bold",
+            titleColor: [26, 33, 46],
+            topMargin: 15,
+            lineSpacing: 4,
           }
-          doc.text(line, textX3, currentY, { align: "left" });
-          currentY += 6;
-        });
+        );
 
-        // Add spacing after first prompt
-        currentY += 1;
-        const rectStartY3 = currentY - 2;
-
-        // Second section: "Create a tagline for the year <newYear>"
-        const promptText4 = `Create a tagline for ${newYear} (e.g growth, self-love, etc.)`;
-
-        // Calculate how much space the second prompt will take
-        const textWidth4 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const splitText4 = doc.splitTextToSize(promptText4, textWidth4);
-        const prompt4Height = splitText4.length * 6 + 1; // Height of prompt text + spacing
-
-        // Calculate available space for both rectangles
-        const spacingAfterFirstRect2 = 2; // Small spacing after first rectangle
-        const availableSpace2 = pageHeight - rectStartY3 - margin - 10;
-        const totalContentHeight2 = prompt4Height + spacingAfterFirstRect2;
-        const rectHeightEach2 = (availableSpace2 - totalContentHeight2) / 2;
-
-        // Draw gray rounded rectangle for first section
-        const rectStartX3 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth3 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const cornerRadius3 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x3 = rectStartX3;
-        const y3 = rectStartY3;
-        const w3 = rectWidth3;
-        const h3 = rectHeightEach2;
-        const r3 = cornerRadius3;
-
-        drawDotPattern(x3, y3, w3, h3);
-
-        // Move to second section - start right after first rectangle
-        currentY = rectStartY3 + rectHeightEach2 + 8; // Small spacing after first rectangle
-        currentY += 2.1; // Move second title 6px lower (≈2.1mm, net 6px from original)
-
-        // Add second prompt text
-        const textX4 = currentHalf === "left" ? margin : dividerX + margin;
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        splitText4.forEach((line: string) => {
-          doc.text(line, textX4, currentY, { align: "left" });
-          currentY += 6;
-        });
-
-        // Add spacing after second prompt
-        currentY += 1;
-
-        // Draw gray rounded rectangle for second section
-        const rectStartX4 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth4 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const rectStartY4 = currentY - 2;
-        // Ensure same bottom margin as single-section rectangles
-        const rectHeight4 = pageHeight - rectStartY4 - margin - 10;
-        const cornerRadius4 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x4 = rectStartX4;
-        const y4 = rectStartY4;
-        const w4 = rectWidth4;
-        const h4 = rectHeight4;
-        const r4 = cornerRadius4;
-
-        drawDotPattern(x4, y4, w4, h4);
-
-        // Add page number for this half-page
-        addPageNumber();
-
-        // New page with title
-        // Ensure we're on a fresh half-page
-        if (currentHalf === "left") {
-          // Move to right half on same page
-          currentHalf = "right";
-          currentY = margin + 20;
-        } else {
-          // Move to next page, left half
-          doc.addPage();
-          drawDivider();
-          currentHalf = "left";
-          currentY = margin + 20;
-        }
-
-        // Apply page template with title
-        addPageTemplate("LOVE THE PEOPLE.", {
-          fontSize: 12,
-          fontStyle: "bold",
-          titleColor: [26, 33, 46], // #1A212E
-          topMargin: 15,
-          lineSpacing: 4, // Reduced spacing between lines and title
-        });
-
-        // Section: "Which 3 people in your life you have been most grateful for in <lastYear> and why?"
-        const promptText5 = `Which 3 people in your life you have been most grateful for in ${lastYear} and why?`;
-
-        // Check if we need to move to next half-page before adding prompt
-        if (currentY > pageHeight - margin - 60) {
-          if (currentHalf === "left") {
-            currentHalf = "right";
-            currentY = margin + 20;
-          } else {
-            doc.addPage();
-            drawDivider();
-            currentHalf = "left";
-            currentY = margin + 20;
+        addSingleSectionPage(
+          "LOVE THE PEOPLE.",
+          `Which 3 people in your life you have been most grateful for in ${lastYear} and why?`,
+          {
+            fontSize: 12,
+            fontStyle: "bold",
+            titleColor: [26, 33, 46],
+            topMargin: 15,
+            lineSpacing: 4,
           }
-        }
+        );
 
-        // Calculate available width for text in current half
-        const textWidth5 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const textX5 = currentHalf === "left" ? margin : dividerX + margin;
-
-        // Set font for prompt
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        // Split text into lines that fit within the half-page width
-        const splitText5 = doc.splitTextToSize(promptText5, textWidth5);
-
-        // Add each line of text
-        splitText5.forEach((line: string) => {
-          if (currentY > pageHeight - margin - 20) {
-            if (currentHalf === "left") {
-              currentHalf = "right";
-              currentY = margin + 20;
-            } else {
-              doc.addPage();
-              drawDivider();
-              currentHalf = "left";
-              currentY = margin + 20;
-            }
+        addSingleSectionPage(
+          "YOU MADE IT HAPPEN",
+          `Which are your 3 biggest achievements from ${lastYear}?`,
+          {
+            fontSize: 12,
+            fontStyle: "bold",
+            titleColor: [26, 33, 46],
+            topMargin: 15,
+            lineSpacing: 4,
           }
-          doc.text(line, textX5, currentY, { align: "left" });
-          currentY += 6;
-        });
+        );
 
-        // Add spacing after prompt
-        currentY += 1;
-
-        // Draw gray rounded rectangle
-        const rectStartX5 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth5 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const rectStartY5 = currentY - 2;
-        const rectHeight5 = pageHeight - rectStartY5 - margin - 10;
-        const cornerRadius5 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x5 = rectStartX5;
-        const y5 = rectStartY5;
-        const w5 = rectWidth5;
-        const h5 = rectHeight5;
-        const r5 = cornerRadius5;
-
-        drawDotPattern(x5, y5, w5, h5);
-
-        // Add page number for this half-page
-        addPageNumber();
-
-        // New page with title
-        // Ensure we're on a fresh half-page
-        if (currentHalf === "left") {
-          // Move to right half on same page
-          currentHalf = "right";
-          currentY = margin + 20;
-        } else {
-          // Move to next page, left half
-          doc.addPage();
-          drawDivider();
-          currentHalf = "left";
-          currentY = margin + 20;
-        }
-
-        // Apply page template with title
-        addPageTemplate(`YOU MADE IT HAPPEN`, {
-          fontSize: 12,
-          fontStyle: "bold",
-          titleColor: [26, 33, 46], // #1A212E
-          topMargin: 15,
-          lineSpacing: 4, // Reduced spacing between lines and title
-        });
-
-        // Section: "Which are your 3 biggest achievements from <lastYear>?"
-        const promptText6 = `Which are your 3 biggest achievements from ${lastYear}?`;
-
-        // Check if we need to move to next half-page before adding prompt
-        if (currentY > pageHeight - margin - 60) {
-          if (currentHalf === "left") {
-            currentHalf = "right";
-            currentY = margin + 20;
-          } else {
-            doc.addPage();
-            drawDivider();
-            currentHalf = "left";
-            currentY = margin + 20;
+        addSingleSectionPage(
+          "YOU GOT THROUGH IT",
+          `What were your 3 biggest challenges in ${lastYear}?`,
+          {
+            fontSize: 12,
+            fontStyle: "bold",
+            titleColor: [26, 33, 46],
+            topMargin: 15,
+            lineSpacing: 4,
           }
-        }
-
-        // Calculate available width for text in current half
-        const textWidth6 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const textX6 = currentHalf === "left" ? margin : dividerX + margin;
-
-        // Set font for prompt
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        // Split text into lines that fit within the half-page width
-        const splitText6 = doc.splitTextToSize(promptText6, textWidth6);
-
-        // Add each line of text
-        splitText6.forEach((line: string) => {
-          if (currentY > pageHeight - margin - 20) {
-            if (currentHalf === "left") {
-              currentHalf = "right";
-              currentY = margin + 20;
-            } else {
-              doc.addPage();
-              drawDivider();
-              currentHalf = "left";
-              currentY = margin + 20;
-            }
-          }
-          doc.text(line, textX6, currentY, { align: "left" });
-          currentY += 6;
-        });
-
-        // Add spacing after prompt
-        currentY += 1;
-
-        // Draw gray rounded rectangle
-        const rectStartX6 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth6 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const rectStartY6 = currentY - 2;
-        const rectHeight6 = pageHeight - rectStartY6 - margin - 10;
-        const cornerRadius6 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x6 = rectStartX6;
-        const y6 = rectStartY6;
-        const w6 = rectWidth6;
-        const h6 = rectHeight6;
-        const r6 = cornerRadius6;
-
-        drawDotPattern(x6, y6, w6, h6);
-
-        // Add page number for this half-page
-        addPageNumber();
-
-        // New page with title
-        // Ensure we're on a fresh half-page
-        if (currentHalf === "left") {
-          // Move to right half on same page
-          currentHalf = "right";
-          currentY = margin + 20;
-        } else {
-          // Move to next page, left half
-          doc.addPage();
-          drawDivider();
-          currentHalf = "left";
-          currentY = margin + 20;
-        }
-
-        // Apply page template with title
-        addPageTemplate("YOU GOT THROUGH IT", {
-          fontSize: 12,
-          fontStyle: "bold",
-          titleColor: [26, 33, 46], // #1A212E
-          topMargin: 15,
-          lineSpacing: 4, // Reduced spacing between lines and title
-        });
-
-        // Section: "What were your 3 biggest challenges in <lastYear>?"
-        const promptText7 = `What were your 3 biggest challenges in ${lastYear}?`;
-
-        // Check if we need to move to next half-page before adding prompt
-        if (currentY > pageHeight - margin - 60) {
-          if (currentHalf === "left") {
-            currentHalf = "right";
-            currentY = margin + 20;
-          } else {
-            doc.addPage();
-            drawDivider();
-            currentHalf = "left";
-            currentY = margin + 20;
-          }
-        }
-
-        // Calculate available width for text in current half
-        const textWidth7 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const textX7 = currentHalf === "left" ? margin : dividerX + margin;
-
-        // Set font for prompt
-        doc.setFontSize(10);
-        doc.setFont(fontName, "normal");
-        doc.setTextColor(0, 0, 0);
-
-        // Split text into lines that fit within the half-page width
-        const splitText7 = doc.splitTextToSize(promptText7, textWidth7);
-
-        // Add each line of text
-        splitText7.forEach((line: string) => {
-          if (currentY > pageHeight - margin - 20) {
-            if (currentHalf === "left") {
-              currentHalf = "right";
-              currentY = margin + 20;
-            } else {
-              doc.addPage();
-              drawDivider();
-              currentHalf = "left";
-              currentY = margin + 20;
-            }
-          }
-          doc.text(line, textX7, currentY, { align: "left" });
-          currentY += 6;
-        });
-
-        // Add spacing after prompt
-        currentY += 1;
-
-        // Draw gray rounded rectangle
-        const rectStartX7 = currentHalf === "left" ? margin : dividerX + margin;
-        const rectWidth7 =
-          currentHalf === "left"
-            ? dividerX - 2 * margin
-            : pageWidth - dividerX - 2 * margin;
-        const rectStartY7 = currentY - 2;
-        const rectHeight7 = pageHeight - rectStartY7 - margin - 10;
-        const cornerRadius7 = 2;
-
-        // Draw dot pattern in rounded rectangle
-        const x7 = rectStartX7;
-        const y7 = rectStartY7;
-        const w7 = rectWidth7;
-        const h7 = rectHeight7;
-        const r7 = cornerRadius7;
-
-        drawDotPattern(x7, y7, w7, h7);
-
-        // Add page number for this half-page (last page)
-        addPageNumber();
+        );
 
         // Generate PDF as blob and create object URL for browser preview
         const pdfBlob = doc.output("blob");

@@ -15,12 +15,12 @@ import PlantsCZ from "pages/cz/Plants";
 
 function AppContent() {
   const location = useLocation();
-  const isPdfPage = location.pathname === "/pdf";
+  const isPdfPage = location.pathname === "/new-year";
 
   if (isPdfPage) {
     return (
       <Routes>
-        <Route path="/pdf" element={<Pdf />} />
+        <Route path="/new-year" element={<Pdf />} />
       </Routes>
     );
   }
