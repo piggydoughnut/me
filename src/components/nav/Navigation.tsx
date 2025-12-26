@@ -1,5 +1,6 @@
 import Link from "../Link";
 import { useLocation } from "react-router-dom";
+import { notifyTelegramDownload } from "../../utils/telegramNotification";
 
 const NavLink = ({
   href,
@@ -7,14 +8,37 @@ const NavLink = ({
 }: {
   href: string;
   children: React.ReactNode;
-}) => (
-  <a
-    className="text-lg sm:text-small hover:scale-110 ease-in-out duration-300 hover:text-purple-link fill-midnight-black"
-    href={href}
-  >
-    {children}
-  </a>
-);
+}) => {
+  const isPdf = href.endsWith(".pdf");
+  
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isPdf) {
+      e.preventDefault();
+      const fileName = href.split("/").pop() || "unknown.pdf";
+      
+      // Create a temporary link to trigger download
+      const link = document.createElement("a");
+      link.href = href;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Send Telegram notification
+      await notifyTelegramDownload(fileName);
+    }
+  };
+
+  return (
+    <a
+      className="text-lg sm:text-small hover:scale-110 ease-in-out duration-300 hover:text-purple-link fill-midnight-black"
+      href={href}
+      onClick={handleClick}
+    >
+      {children}
+    </a>
+  );
+};
 
 const HeaderWrap = ({ children }: { children: React.ReactNode }) => (
   <nav className="flex flex-col sm:flex-row sm:justify-between mt-8 items-start">

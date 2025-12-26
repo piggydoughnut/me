@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import jsPDF from "jspdf";
 import { WindsorRegularBase64 } from "../fonts/windsor";
+import { notifyTelegramDownload } from "../utils/telegramNotification";
 
 export default function Pdf() {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(true);
+  const pdfBlobRef = useRef<Blob | null>(null);
 
   useEffect(() => {
     const generatePDF = async () => {
@@ -535,6 +537,7 @@ export default function Pdf() {
 
         // Generate PDF as blob and create object URL for browser preview
         const pdfBlob = doc.output("blob");
+        pdfBlobRef.current = pdfBlob;
         const url = URL.createObjectURL(pdfBlob);
         setPdfUrl(url);
         setIsGenerating(false);
@@ -566,6 +569,31 @@ export default function Pdf() {
     );
   }
 
+  const handleDownload = async () => {
+    if (!pdfBlobRef.current) return;
+
+    try {
+      const fileName = `Reflection-and-Gratitude-Journal-${new Date().getFullYear()}.pdf`;
+      
+      // Create download link
+      const url = URL.createObjectURL(pdfBlobRef.current);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      // Send Telegram notification (don't await to avoid blocking)
+      notifyTelegramDownload(fileName).catch((error) => {
+        console.error("Notification error (non-blocking):", error);
+      });
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+    }
+  };
+
   if (!pdfUrl) {
     return (
       <div className="mt-40 flex items-center justify-center">
@@ -577,7 +605,15 @@ export default function Pdf() {
   }
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen relative">
+      <div className="absolute top-4 right-4 z-10">
+        <button
+          onClick={handleDownload}
+          className="px-4 py-2 bg-purple-link text-white rounded hover:bg-purple-700 transition-colors duration-300 shadow-lg"
+        >
+          Download PDF
+        </button>
+      </div>
       <iframe
         src={pdfUrl}
         className="w-full h-full border-0"
