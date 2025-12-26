@@ -574,7 +574,7 @@ export default function Pdf() {
 
     try {
       const fileName = `Reflection-and-Gratitude-Journal-${new Date().getFullYear()}.pdf`;
-      
+
       // Create download link
       const url = URL.createObjectURL(pdfBlobRef.current);
       const link = document.createElement("a");
@@ -605,15 +605,7 @@ export default function Pdf() {
   }
 
   return (
-    <div className="w-full h-screen relative">
-      <div className="absolute top-4 right-4 z-10">
-        <button
-          onClick={handleDownload}
-          className="px-4 py-2 bg-purple-link text-white rounded hover:bg-purple-700 transition-colors duration-300 shadow-lg"
-        >
-          Download PDF
-        </button>
-      </div>
+    <div className="w-full h-screen">
       <iframe
         src={pdfUrl}
         className="w-full h-full border-0"
