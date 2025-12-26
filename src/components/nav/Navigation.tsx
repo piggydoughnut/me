@@ -57,7 +57,7 @@ export default function Navigation() {
             {[
               { href: "/cz/plants", children: "Jak se rodí květiny" },
               { href: "/cz/Mikhailova_Daria.pdf", children: "CV" },
-              { href: "/blog", children: "Blog" },
+              // { href: "/blog", children: "Blog" },
               { href: "/cz/#get_in_touch", children: "Kontaktujte mě" },
             ].map(({ href, children }) => (
               <NavLink href={href}>{children}</NavLink>
@@ -78,7 +78,7 @@ export default function Navigation() {
           {[
             { href: "./Mikhailova_Daria.pdf", children: "CV" },
             { href: "/plants", children: "Art" },
-            { href: "/blog", children: "Blog" },
+            // { href: "/blog", children: "Blog" },
             { href: "/fun", children: "Fun" },
             { href: "/#get_in_touch", children: "Get in touch" },
           ].map(({ href, children }) => (

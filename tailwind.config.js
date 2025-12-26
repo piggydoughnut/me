@@ -12,6 +12,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        sans: ["Fira Sans", "sans-serif"],
         firaSans: ["Fira Sans", "sans-serif"],
       },
       colors: {
