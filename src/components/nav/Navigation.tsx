@@ -30,12 +30,12 @@ const LogoMenuWrap = ({ children }: { children: React.ReactNode }) => (
 
 const Languages = () => (
   <h3 className="mt-0 flex gap-4 justify-end text-right">
-    <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
+    <p className="mt-10 sm:m-0 flex flex-col justify-end text-right">
       <Link link="/cz">CZ</Link>
-    </h4>
-    <h4 className="mt-10 sm:m-0 flex flex-col justify-end text-right">
+    </p>
+    <p className="mt-10 sm:m-0 flex flex-col justify-end text-right">
       <Link link="/">EN</Link>
-    </h4>
+    </p>
   </h3>
 );
 
@@ -57,10 +57,11 @@ export default function Navigation() {
             {[
               { href: "/cz/plants", children: "Jak se rodí květiny" },
               { href: "/cz/Mikhailova_Daria.pdf", children: "CV" },
-              // { href: "/blog", children: "Blog" },
               { href: "/cz/#get_in_touch", children: "Kontaktujte mě" },
             ].map(({ href, children }) => (
-              <NavLink href={href}>{children}</NavLink>
+              <NavLink key={href} href={href}>
+                {children}
+              </NavLink>
             ))}
           </NavLinkWrap>
         </LogoMenuWrap>
@@ -78,11 +79,12 @@ export default function Navigation() {
           {[
             { href: "./Mikhailova_Daria.pdf", children: "CV" },
             { href: "/plants", children: "Art" },
-            // { href: "/blog", children: "Blog" },
-            { href: "/fun", children: "Fun" },
             { href: "/#get_in_touch", children: "Get in touch" },
+            { href: "/fun", children: "Happy New Year 🎄" },
           ].map(({ href, children }) => (
-            <NavLink href={href}>{children}</NavLink>
+            <NavLink key={href} href={href}>
+              {children}
+            </NavLink>
           ))}
         </NavLinkWrap>
       </LogoMenuWrap>
