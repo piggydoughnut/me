@@ -377,6 +377,121 @@ export default function Pdf() {
           addPageNumber();
         };
 
+        // Helper function to add a three-section page
+        const addThreeSectionPage = (
+          title: string,
+          prompt1: string,
+          prompt2: string,
+          prompt3: string,
+          titleOptions?: {
+            fontSize?: number;
+            fontStyle?: "normal" | "bold" | "italic";
+            titleColor?: [number, number, number];
+            topMargin?: number;
+            lineSpacing?: number;
+          }
+        ) => {
+          moveToNextHalfPage();
+          addPageTemplate(
+            title,
+            titleOptions || { fontSize: 12, fontStyle: "bold" }
+          );
+
+          // First section
+          ensureSpace(60);
+
+          // Calculate available width for text in current half
+          const { textWidth, textX } = getCurrentHalfDimensions();
+
+          // Set font for prompt
+          doc.setFontSize(10);
+          doc.setFont(fontName, "normal");
+          doc.setTextColor(0, 0, 0);
+
+          // Split text into lines that fit within the half-page width
+          const splitText1 = doc.splitTextToSize(prompt1, textWidth);
+
+          // Add each line of text
+          splitText1.forEach((line: string) => {
+            if (currentY > pageHeight - margin - 20) {
+              moveToNextHalfPage();
+            }
+            doc.text(line, textX, currentY, { align: "left" });
+            currentY += 6;
+          });
+
+          // Add spacing after first prompt
+          currentY += 1;
+          const rectStartY1 = currentY - 2;
+
+          // Calculate heights for all prompts
+          const splitText2 = doc.splitTextToSize(prompt2, textWidth);
+          const splitText3 = doc.splitTextToSize(prompt3, textWidth);
+          const prompt2Height = splitText2.length * 6 + 1;
+          const prompt3Height = splitText3.length * 6 + 1;
+
+          // Calculate available space for all three rectangles
+          const spacingAfterRect = 2; // Small spacing after each rectangle
+          const spacingBeforePrompt = 8; // Spacing before each prompt (after previous rect)
+          const availableSpace = pageHeight - rectStartY1 - margin - 10;
+          const totalContentHeight =
+            prompt2Height +
+            prompt3Height +
+            (spacingAfterRect + spacingBeforePrompt) * 2;
+          const rectHeightEach = (availableSpace - totalContentHeight) / 3;
+
+          // Draw gray rounded rectangle for first section
+          const { rectX, rectWidth } = getCurrentHalfDimensions();
+          drawDotPattern(rectX, rectStartY1, rectWidth, rectHeightEach);
+
+          // Move to second section
+          currentY = rectStartY1 + rectHeightEach + spacingBeforePrompt;
+          currentY += 2.1;
+
+          // Add second prompt text
+          doc.setFontSize(10);
+          doc.setFont(fontName, "normal");
+          doc.setTextColor(0, 0, 0);
+
+          splitText2.forEach((line: string) => {
+            doc.text(line, textX, currentY, { align: "left" });
+            currentY += 6;
+          });
+
+          // Add spacing after second prompt
+          currentY += 1;
+          const rectStartY2 = currentY - 2;
+
+          // Draw gray rounded rectangle for second section
+          drawDotPattern(rectX, rectStartY2, rectWidth, rectHeightEach);
+
+          // Move to third section
+          currentY = rectStartY2 + rectHeightEach + spacingBeforePrompt;
+          currentY += 2.1;
+
+          // Add third prompt text
+          doc.setFontSize(10);
+          doc.setFont(fontName, "normal");
+          doc.setTextColor(0, 0, 0);
+
+          splitText3.forEach((line: string) => {
+            doc.text(line, textX, currentY, { align: "left" });
+            currentY += 6;
+          });
+
+          // Add spacing after third prompt
+          currentY += 1;
+
+          // Draw gray rounded rectangle for third section
+          const rectStartY3 = currentY - 2;
+          const rectHeight3 = pageHeight - rectStartY3 - margin - 10;
+
+          drawDotPattern(rectX, rectStartY3, rectWidth, rectHeight3);
+
+          // Add page number for this half-page
+          addPageNumber();
+        };
+
         // Helper function to add content to a half-page
         let currentHalf: "left" | "right" = "left";
         let currentY = margin + 20;
@@ -466,7 +581,7 @@ export default function Pdf() {
           lineSpacing: 4,
         });
         addPromptText(
-          `Describe the top 3 moments from ${lastYear} which make you feel most grateful.`
+          `Reminisce on the top 3 moments from ${lastYear} which make you feel most grateful.`
         );
         addDotPatternSection();
         addPageNumber();
@@ -486,10 +601,11 @@ export default function Pdf() {
           }
         );
 
-        addTwoSectionPage(
+        addThreeSectionPage(
           "THE NEW YEAR IS HERE",
           `Summarize your ${lastYear} in one word or phrase.`,
           `Create a tagline for ${newYear} (e.g growth, self-love, etc.)`,
+          `Something you want to do more of in ${newYear}.`,
           {
             fontSize: 12,
             fontStyle: "bold",
@@ -568,31 +684,6 @@ export default function Pdf() {
       </div>
     );
   }
-
-  const handleDownload = async () => {
-    if (!pdfBlobRef.current) return;
-
-    try {
-      const fileName = `Reflection-and-Gratitude-Journal-${new Date().getFullYear()}.pdf`;
-
-      // Create download link
-      const url = URL.createObjectURL(pdfBlobRef.current);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-
-      // Send Telegram notification (don't await to avoid blocking)
-      notifyTelegramDownload(fileName).catch((error) => {
-        console.error("Notification error (non-blocking):", error);
-      });
-    } catch (error) {
-      console.error("Error downloading PDF:", error);
-    }
-  };
 
   if (!pdfUrl) {
     return (
