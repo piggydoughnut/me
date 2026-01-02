@@ -1,6 +1,9 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
   // Log the incoming request for debugging
   console.log("[notify-telegram] Request received:", {
     method: req.method,
@@ -101,4 +104,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       details: error instanceof Error ? error.message : "Unknown error",
     });
   }
-}
+};
