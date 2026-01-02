@@ -20,6 +20,7 @@ export async function notifyTelegramDownload(pdfName: string): Promise<void> {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("❌ Failed to send Telegram notification:", errorText);
+      console.error("❌ Response:", response);
       throw new Error(`Notification failed: ${errorText}`);
     }
 

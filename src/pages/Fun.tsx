@@ -1,9 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { notifyTelegramDownload } from "../utils/telegramNotification";
 
 export default function Fun() {
   const navigate = useNavigate();
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
+    // Send Telegram notification (don't await to avoid blocking navigation)
+    notifyTelegramDownload("Reflection and Gratitude Journal").catch(
+      (error) => {
+        console.error("Notification error (non-blocking):", error);
+      }
+    );
     navigate("/new-year");
   };
 
