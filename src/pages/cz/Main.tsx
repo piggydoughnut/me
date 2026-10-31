@@ -96,8 +96,8 @@ export default function Main() {
             name="Shadowcat Labs"
             description="Sleduje na Telegramu úniky přihlašovacích údajů, hlášení o průnicích a zneužití značek a předává strukturovaná upozornění bezpečnostním platformám."
             href="https://shadowcatlabs.com/"
-            image="/projects/shadowcat-labs.png"
-            imageClassName="w-8 h-8 object-contain"
+            image="/projects/shadowcat-labs.jpg"
+            imageClassName="w-full h-full object-cover"
             imageWrapClassName="bg-gray-100"
           />
           <h3 className="font-bold text-small uppercase tracking-wider text-gray-500 mt-8">
