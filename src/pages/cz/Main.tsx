@@ -1,6 +1,7 @@
 import Link, { ExternalLink, FunLink } from "components/Link";
 
 import Icons from "components/Icons";
+import PersonalProject from "components/PersonalProject";
 
 const FunLinkColors = {
   pink: "bg-pink-200",
@@ -76,15 +77,60 @@ export default function Main() {
         <p className="w-3/4 mt-5">
           Spolupracuji s různými klienty, např.{" "}
           <Link link="https://parity.io">Parity</Link> a 2A design. <br />
-          Osobní projekty:{" "}
-          <ExternalLink link="https://hack-your-cycle.com/">
-            Hack Your Cycle
-          </ExternalLink>
-          ,{" "}
-          <ExternalLink link="https://postcardru.com/">
-            Virtual Postcards
-          </ExternalLink>
         </p>
+      </section>
+      <section className="mt-10">
+        <h2 className="font-bold">Osobní projekty</h2>
+        <div className="mt-6 max-w-2xl">
+          <h3 className="font-bold text-small uppercase tracking-wider text-gray-500">
+            Produkty
+          </h3>
+          <PersonalProject
+            name="heyclock"
+            description="Z existujících výkazů práce připraví srozumitelné přehledy o dodržování pravidel pracovní doby a pošle je e-mailem."
+            href="https://heyclock.io/"
+            image="/projects/heyclock.svg"
+            imageWrapClassName="bg-gray-100"
+          />
+          <PersonalProject
+            name="Shadowcat Labs"
+            description="Sleduje na Telegramu úniky přihlašovacích údajů, hlášení o průnicích a zneužití značek a předává strukturovaná upozornění bezpečnostním platformám."
+            href="https://shadowcatlabs.com/"
+            image="/projects/shadowcat-labs.png"
+            imageClassName="w-8 h-8 object-contain"
+            imageWrapClassName="bg-gray-100"
+          />
+          <h3 className="font-bold text-small uppercase tracking-wider text-gray-500 mt-8">
+            Pro radost
+          </h3>
+          <PersonalProject
+            name="Hack Your Cycle"
+            description="Malý nástroj, který přidá fáze cyklu do Kalendáře Google, aby se plány mohly přizpůsobit tvému rytmu."
+            href="https://hack-your-cycle.com/"
+            image="/projects/hack-your-cycle.png"
+            imageClassName="w-10 h-10 sm:w-12 sm:h-12"
+            imageWrapClassName="bg-pink-50"
+          />
+          <PersonalProject
+            name="Virtual Postcards"
+            description="Pocta ranému internetu: vyber si nostalgickou virtuální pohlednici a pošli ji někomu blízkému."
+            href="https://postcardru.com/"
+            image="/projects/virtual-postcards.svg"
+            imageClassName="w-10 h-10 sm:w-14 sm:h-14 object-contain"
+            imageWrapClassName="bg-yellow-100"
+          />
+          <h3 className="font-bold text-small uppercase tracking-wider text-gray-500 mt-8">
+            Umění
+          </h3>
+          <PersonalProject
+            name="Sad Sunday Club"
+            description="Ručně kreslené ilustrace, myšlenky a občasné malé dopisy o životě."
+            href="https://sadsundayclub.com/"
+            image="/projects/sad-sunday-club.jpeg"
+            imageClassName="w-full h-full object-cover"
+            imageWrapClassName="bg-gray-100"
+          />
+        </div>
       </section>
 
       {/* <Footer /> */}

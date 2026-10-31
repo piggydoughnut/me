@@ -1,6 +1,7 @@
 import Link, { ExternalLink, FunLink } from "../components/Link";
 
 import Icons from "components/Icons";
+import PersonalProject from "components/PersonalProject";
 
 const FunLinkColors = {
   pink: "bg-pink-200",
@@ -86,17 +87,56 @@ export default function Main() {
 
       <section className="mt-10">
         <h2 className="font-bold">Personal projects</h2>
-        <p className="w-3/4 mt-5">
-          <ExternalLink link="https://hack-your-cycle.com/">
-            Hack Your Cycle
-          </ExternalLink>{" "}
-          - simple tool for women to sync their cycle phases with Google
-          Calendar. <br />
-          <ExternalLink link="https://postcardru.com/">
-            Virtual Postcards
-          </ExternalLink>{" "}
-          - an exact copy of the 90s virtual postcard website.
-        </p>
+        <div className="mt-6 max-w-2xl">
+          <h3 className="font-bold text-small uppercase tracking-wider text-gray-500">
+            Products
+          </h3>
+          <PersonalProject
+            name="heyclock"
+            description="Turns existing timesheets into clear working-time compliance reports, delivered straight to your inbox."
+            href="https://heyclock.io/"
+            image="/projects/heyclock.svg"
+            imageWrapClassName="bg-gray-100"
+          />
+          <PersonalProject
+            name="Shadowcat Labs"
+            description="Monitors Telegram for leaked credentials, breach claims and brand abuse, then delivers structured alerts to security platforms."
+            href="https://shadowcatlabs.com/"
+            image="/projects/shadowcat-labs.png"
+            imageClassName="w-8 h-8 object-contain"
+            imageWrapClassName="bg-gray-100"
+          />
+          <h3 className="font-bold text-small uppercase tracking-wider text-gray-500 mt-8">
+            For fun
+          </h3>
+          <PersonalProject
+            name="Hack Your Cycle"
+            description="A little tool that adds cycle phases to Google Calendar, so your schedule can move with you."
+            href="https://hack-your-cycle.com/"
+            image="/projects/hack-your-cycle.png"
+            imageClassName="w-10 h-10 sm:w-12 sm:h-12"
+            imageWrapClassName="bg-pink-50"
+          />
+          <PersonalProject
+            name="Virtual Postcards"
+            description="A love letter to the early internet: pick a delightfully retro postcard and send it to someone."
+            href="https://postcardru.com/"
+            image="/projects/virtual-postcards.svg"
+            imageClassName="w-10 h-10 sm:w-14 sm:h-14 object-contain"
+            imageWrapClassName="bg-yellow-100"
+          />
+          <h3 className="font-bold text-small uppercase tracking-wider text-gray-500 mt-8">
+            Art
+          </h3>
+          <PersonalProject
+            name="Sad Sunday Club"
+            description="Hand-drawn illustrations, thoughts and occasional little letters about life."
+            href="https://sadsundayclub.com/"
+            image="/projects/sad-sunday-club.jpeg"
+            imageClassName="w-full h-full object-cover"
+            imageWrapClassName="bg-gray-100"
+          />
+        </div>
       </section>
 
       <section className="mt-10">
